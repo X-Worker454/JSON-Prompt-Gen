@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (currentStep === totalSteps) {
-            gettingStartedNextBtn.textContent = 'Get Started!';
+            gettingStartedNextBtn.textContent = 'Get Started';
         } else {
-            gettingStartedNextBtn.textContent = 'Next →';
+            gettingStartedNextBtn.textContent = 'Next';
         }
     }
 
