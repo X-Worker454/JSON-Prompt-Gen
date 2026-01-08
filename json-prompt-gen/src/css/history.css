@@ -1,0 +1,371 @@
+/* History Section & Modal Styles */
+
+/* Shared Styles */
+.history-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.history-meta span {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Button Icon SVG spacing */
+.btn-icon-svg {
+    margin-right: 6px;
+}
+
+/* Modal header actions spacing */
+.modal-header-actions #history-preview-actions {
+    margin-right: 2px;
+}
+
+#history-close-btn {
+    background: rgba(255, 255, 255, 0.055);
+    color: #ffffff;
+    border: 1px solid rgba(138, 138, 138, 0.3);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 22px;
+    line-height: 1;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#history-close-btn:hover {
+    color: #f02d2d;
+    background: rgba(239, 68, 68, 0.25);
+    border-color: rgba(239, 68, 68, 0.5);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+#history-restore-btn {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px !important;
+}
+
+#history-restore-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Custom Scrollbar for better UI */
+.history-list::-webkit-scrollbar,
+.code-editor::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track,
+.code-editor::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.history-list::-webkit-scrollbar-thumb,
+.code-editor::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-thumb:hover,
+.code-editor::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* History Page Extension (Full Page) */
+.history-page .dict-split-view {
+    height: 700px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    gap: 16px;
+}
+
+.history-page .dict-sidebar {
+    width: 320px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.15);
+    transition: border-color 0.2s ease;
+}
+
+.history-page .dict-sidebar:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.history-sidebar .sidebar-header,
+.dict-sidebar .sidebar-header {
+    padding: 10px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.history-sidebar .sidebar-header span,
+.dict-sidebar .sidebar-header span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    color: #ffffffc5;
+}
+
+/* History Items */
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 8px 14px;
+    margin-bottom: 6px;
+    border-bottom: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.history-item:hover {
+    background: rgba(0, 81, 255, 0.062);
+    border-radius: 8px;
+}
+
+.history-item.active {
+    background: rgba(0, 81, 255, 0.099);
+    border: 1px solid rgba(0, 68, 255, 0.548);
+    border-radius: 8px;
+}
+
+.history-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.history-item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.history-summary {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    opacity: 0.8;
+}
+
+.history-delete-btn {
+    opacity: 0;
+    padding: 4px;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-bottom: -4px;
+    margin-right: -4px;
+}
+
+.history-item:hover .history-delete-btn {
+    opacity: 1;
+}
+
+.history-delete-btn:hover {
+    color: #ef4444;
+}
+
+/* History Badge Styles */
+.history-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-json {
+    background: linear-gradient(135deg, rgba(114, 97, 0, 0.24) 0%, rgba(255, 217, 0, 0.4) 100%);
+    color: rgba(255, 251, 236, 0.815);
+}
+
+.badge-ai {
+    background: linear-gradient(135deg, rgba(87, 0, 114, 0.205) 0%, rgba(255, 0, 150, 0.4) 100%);
+    color: rgba(255, 241, 250, 0.795);
+}
+
+/* New Icon Button Styles */
+.btn-icon-small {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ffffffe0;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-icon-small:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Main Preview Area */
+.history-page .dict-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.26);
+}
+
+#history-section .code-wrapper {
+    flex: 1;
+    margin: 0;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.history-page .code-editor,
+#history-modal .code-editor {
+    flex: 1;
+    padding: 24px;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.158);
+    border-radius: 10px;
+    white-space: pre-wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.075);
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.history-page .code-editor:hover,
+#history-modal .code-editor:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Placeholder Centering */
+.code-editor:has(.placeholder-content) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    opacity: 0.6;
+}
+
+.placeholder-content {
+    text-align: center;
+    max-width: 300px;
+}
+
+/* History Modal Specifics */
+#history-modal .modal-content {
+    max-width: 1000px;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#history-modal .modal-body {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    overflow: hidden;
+    gap: 15px;
+}
+
+#history-modal .history-sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#history-modal .history-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+#history-modal .code-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 0;
+}
+
+/* History Actions */
+.history-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* History Section Page */
+#history-section {
+    margin: 0 0 90px;
+}
+
+.history-main-card {
+    background: var(--bg-elevated);
+    border-radius: var(--radius-md);
+}
+
+/* Diff Viewer Styles */
+.diff-line {
+    padding: 0 4px;
+    min-height: 1.2em;
+}
+
+.diff-add {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+}
+
+.diff-remove {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    text-decoration: line-through;
+    opacity: 0.8;
+}

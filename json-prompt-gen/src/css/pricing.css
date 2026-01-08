@@ -1,0 +1,305 @@
+/* =========================================
+   Pricing Page Styles - Professional Glassmorphism
+   ========================================= */
+
+/* Section Layout */
+.pricing-page {
+    width: 100%;
+    margin-bottom: 60px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.pricing-hero {
+    text-align: center;
+    padding: 0 0 90px;
+    position: relative;
+}
+
+.pricing-hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.pricing-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 15px auto;
+    line-height: 1.6;
+}
+
+/* Tier Grid */
+.pricing-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Card Architecture */
+.pricing-card {
+    flex: 1 1 350px;
+    max-width: 380px;
+    background: rgba(20, 20, 30, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 26px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    background: rgba(30, 30, 45, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Tier Specifics */
+/* Tier 1: Free (Blue from User Request) */
+.tier-free {
+    border-top: 5px solid #0073ffd5;
+    transform: translateY(-5px);
+    border-color: #0073ffd7;
+}
+
+.tier-free:hover {
+    transform: translateY(-5px);
+    border-top: 5px solid #2788ff;
+    border-color: #2788ff;
+}
+
+.tier-free .pricing-badge {
+    background: rgba(0, 115, 255, 0.1);
+    color: #0073ffee;
+    border: 1px solid rgba(0, 115, 255, 0.3);
+}
+
+.tier-free .price-amount {
+    color: #0073ffee;
+}
+
+/* Tier 2: Pro (Amber) */
+.tier-pro {
+    border-top: 5px solid #c48c00;
+    transform: translateY(-5px);
+    border-color: #c48c00;
+}
+
+.tier-pro:hover {
+    transform: translateY(-5px);
+    border-top: 5px solid #ffbb0d;
+    border-color: #ffbb0d;
+}
+
+.tier-pro .pricing-badge {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.tier-pro .price-amount {
+    color: #fbbf24;
+}
+
+/* Tier 3: Enterprise (Purple) */
+.tier-enterprise {
+    border-top: 5px solid #c50fbfec;
+}
+
+.tier-enterprise .pricing-badge {
+    background: rgba(234, 2, 226, 0.1);
+    color: #ea02e2ec;
+    border: 1px solid rgba(234, 2, 226, 0.3);
+}
+
+.tier-enterprise .price-amount {
+    color: #ff2af8ec;
+}
+
+/* Card Content */
+.pricing-header {
+    margin-bottom: 24px;
+}
+
+.tier-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pricing-badge {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.pricing-price {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.price-amount {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.price-period {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-left: 6px;
+}
+
+.price-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Features List */
+.pricing-features {
+    flex: 1;
+    margin: 0 0 32px;
+    list-style: none;
+    padding: 0;
+}
+
+.pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.92rem;
+    line-height: 1.4;
+}
+
+.pricing-features li svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--accent-primary);
+    /* Default check color */
+}
+
+.tier-free li svg {
+    color: #0073ffee;
+}
+
+.tier-pro li svg {
+    color: #fbbf24;
+}
+
+.tier-enterprise li svg {
+    color: #ea02e2ec;
+}
+
+/* Pricing Actions - Coming Soon Style */
+.pricing-action {
+    margin-top: auto;
+}
+
+.btn-pricing {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+}
+
+.btn-pricing:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+
+.btn-pricing.coming-soon {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: default;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-pricing.coming-soon:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .pricing-grid {
+        padding: 20px;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .pricing-grid {
+        gap: 20px;
+    }
+
+    .pricing-hero {
+        padding: 40px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        padding: 24px;
+    }
+
+    .pricing-hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .pricing-subtitle {
+        font-size: 1rem;
+    }
+
+    .pricing-card {
+        padding: 24px;
+    }
+}

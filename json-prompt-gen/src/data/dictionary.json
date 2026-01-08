@@ -1,0 +1,1374 @@
+{
+  "categories": [
+    {
+      "id": "camera_techniques",
+      "name": "Camera Techniques",
+      "author": "System",
+      "terms": [
+        {
+          "id": "close_up",
+          "name": "Close-up",
+          "definition": "A tight framing that focuses on a subject's face or a specific detail, emphasizing emotion or importance.",
+          "difficulty": "beginner",
+          "examples": [
+            "Emotional reactions",
+            "Detail emphasis",
+            "Intimate moments"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "wide_shot",
+          "name": "Wide shot",
+          "definition": "Shows the entire subject and much of the surrounding environment, establishing context and scale.",
+          "difficulty": "beginner",
+          "examples": [
+            "Landscape reveals",
+            "Character in environment",
+            "Scene establishment"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "medium_shot",
+          "name": "Medium shot",
+          "definition": "Frames a subject from the waist up, balancing body language with environmental context.",
+          "difficulty": "beginner",
+          "examples": [
+            "Dialogue scenes",
+            "Action sequences",
+            "Character introductions"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "extreme_close_up",
+          "name": "Extreme close-up",
+          "definition": "Focuses on a tiny detail like an eye, hand, or object to create intense focus.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Tension building",
+            "Object significance",
+            "Micro-expressions"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "over_the_shoulder",
+          "name": "Over-the-shoulder shot",
+          "definition": "Camera placed behind one character to capture another, creating intimacy in conversations.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Dialogue exchanges",
+            "Confrontations",
+            "Interview setups"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "point_of_view",
+          "name": "Point-of-view shot",
+          "definition": "Shows exactly what a character is seeing, immersing the audience in their perspective.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Subjective experience",
+            "Discovery moments",
+            "Horror reveals"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "dutch_angle",
+          "name": "Dutch angle",
+          "definition": "Camera tilted to one side creating disorientation and unease.",
+          "difficulty": "advanced",
+          "examples": [
+            "Psychological tension",
+            "Villain introductions",
+            "Dream sequences"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "high_angle",
+          "name": "High angle",
+          "definition": "Camera looks down on the subject, making them appear small or vulnerable.",
+          "difficulty": "beginner",
+          "examples": [
+            "Power dynamics",
+            "Helplessness",
+            "Overview shots"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "low_angle",
+          "name": "Low angle",
+          "definition": "Camera looks up at the subject, making them appear powerful or imposing.",
+          "difficulty": "beginner",
+          "examples": [
+            "Hero moments",
+            "Authority figures",
+            "Intimidation"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "establishing_shot",
+          "name": "Establishing shot",
+          "definition": "Sets up the context for a scene by showing the location or setting.",
+          "difficulty": "beginner",
+          "examples": [
+            "Location introductions",
+            "Time transitions",
+            "World-building"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "lighting_setups",
+      "name": "Lighting Setups",
+      "author": "System",
+      "terms": [
+        {
+          "id": "three_point",
+          "name": "Three-point lighting",
+          "definition": "Standard method using Key, Fill, and Back lights for balanced illumination.",
+          "difficulty": "beginner",
+          "examples": [
+            "Interview setups",
+            "Product photography",
+            "Portraits"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "key_light",
+          "name": "Key light",
+          "definition": "The primary light source illuminating the subject.",
+          "difficulty": "beginner",
+          "examples": [
+            "Main subject focus",
+            "Directional shadows",
+            "Mood setting"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "fill_light",
+          "name": "Fill light",
+          "definition": "Softens shadows created by the key light for balanced exposure.",
+          "difficulty": "beginner",
+          "examples": [
+            "Shadow reduction",
+            "Even lighting",
+            "Commercial look"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "backlight",
+          "name": "Backlight",
+          "definition": "Light from behind separating subject from background.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Silhouettes",
+            "Hair highlights",
+            "Depth creation"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "practical",
+          "name": "Practical lighting",
+          "definition": "Real light sources within the scene like lamps and candles.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Realistic ambiance",
+            "Period films",
+            "Natural motivation"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "high_key",
+          "name": "High-key lighting",
+          "definition": "Bright, even illumination with few shadows for upbeat mood.",
+          "difficulty": "beginner",
+          "examples": [
+            "Comedies",
+            "Commercials",
+            "Music videos"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "low_key",
+          "name": "Low-key lighting",
+          "definition": "Dark, moody lighting with high contrast for drama.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Film noir",
+            "Thrillers",
+            "Horror"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "natural",
+          "name": "Natural lighting",
+          "definition": "Using available light like sunlight or moonlight.",
+          "difficulty": "beginner",
+          "examples": [
+            "Documentary",
+            "Outdoor scenes",
+            "Golden hour"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "rembrandt",
+          "name": "Rembrandt lighting",
+          "definition": "Triangle of light on the shadowed side of the face.",
+          "difficulty": "advanced",
+          "examples": [
+            "Portraits",
+            "Drama",
+            "Artistic shots"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "butterfly",
+          "name": "Butterfly lighting",
+          "definition": "Light source placed above and directly centered on subject.",
+          "difficulty": "advanced",
+          "examples": [
+            "Glamour photography",
+            "Beauty shots",
+            "Fashion"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "color_palettes",
+      "name": "Color Palettes",
+      "author": "System",
+      "terms": [
+        {
+          "id": "monochromatic",
+          "name": "Monochromatic",
+          "definition": "Uses variations of a single color hue for unity.",
+          "difficulty": "beginner",
+          "examples": [
+            "Minimalist design",
+            "Mood consistency",
+            "Brand identity"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "complementary",
+          "name": "Complementary colors",
+          "definition": "Colors opposite each other on the color wheel for contrast.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Teal and orange",
+            "Visual pop",
+            "Action films"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "analogous",
+          "name": "Analogous colors",
+          "definition": "Colors next to each other on the color wheel for harmony.",
+          "difficulty": "beginner",
+          "examples": [
+            "Nature scenes",
+            "Calm moods",
+            "Unified palettes"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "triadic",
+          "name": "Triadic colors",
+          "definition": "Three colors evenly spaced on the color wheel.",
+          "difficulty": "advanced",
+          "examples": [
+            "Comic book aesthetics",
+            "Vibrant scenes",
+            "Playful tones"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "warm_tones",
+          "name": "Warm tones",
+          "definition": "Reds, oranges, and yellows evoking heat or passion.",
+          "difficulty": "beginner",
+          "examples": [
+            "Romance",
+            "Action",
+            "Desert scenes"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "cool_tones",
+          "name": "Cool tones",
+          "definition": "Blues, greens, and purples evoking cold or calm.",
+          "difficulty": "beginner",
+          "examples": [
+            "Sci-fi",
+            "Sadness",
+            "Night scenes"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "desaturated",
+          "name": "Desaturated",
+          "definition": "Muted colors with low intensity for subdued mood.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Post-apocalyptic",
+            "Drama",
+            "Historical"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "high_contrast",
+          "name": "High contrast",
+          "definition": "Strong difference between light and dark areas.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Noir style",
+            "Dramatic effect",
+            "Bold statements"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "pastel",
+          "name": "Pastel palette",
+          "definition": "Soft, pale colors often for dreamlike vibes.",
+          "difficulty": "beginner",
+          "examples": [
+            "Fantasy",
+            "Romance",
+            "Childhood memories"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "earth_tones",
+          "name": "Earth tones",
+          "definition": "Natural colors like browns, greens, and tans.",
+          "difficulty": "beginner",
+          "examples": [
+            "Westerns",
+            "Period pieces",
+            "Organic feel"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "composition_principles",
+      "name": "Composition Principles",
+      "author": "System",
+      "terms": [
+        {
+          "id": "rule_of_thirds",
+          "name": "Rule of thirds",
+          "definition": "Frame divided into nine equal segments for balanced placement.",
+          "difficulty": "beginner",
+          "examples": [
+            "Subject positioning",
+            "Horizon placement",
+            "Interview framing"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "leading_lines",
+          "name": "Leading lines",
+          "definition": "Lines guiding the viewer's eye to the subject.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Roads",
+            "Architecture",
+            "Natural paths"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "framing",
+          "name": "Framing",
+          "definition": "Using objects to create a frame within the frame.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Doorways",
+            "Windows",
+            "Natural arches"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "symmetry",
+          "name": "Symmetry",
+          "definition": "Balanced arrangement of elements on screen.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Wes Anderson style",
+            "Formality",
+            "Perfection"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "negative_space",
+          "name": "Negative space",
+          "definition": "Empty space around the subject to create focus.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Isolation",
+            "Minimalism",
+            "Emphasis"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "golden_ratio",
+          "name": "Golden ratio",
+          "definition": "Mathematical ratio for aesthetically pleasing composition.",
+          "difficulty": "advanced",
+          "examples": [
+            "Classical art",
+            "Natural patterns",
+            "Premium look"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "depth_layers",
+          "name": "Depth layers",
+          "definition": "Using foreground, midground, background for depth.",
+          "difficulty": "intermediate",
+          "examples": [
+            "3D effect",
+            "Immersion",
+            "Visual interest"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "visual_weight",
+          "name": "Visual weight balance",
+          "definition": "Distributing visual elements to balance the shot.",
+          "difficulty": "advanced",
+          "examples": [
+            "Asymmetrical balance",
+            "Color weight",
+            "Size contrast"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "diagonal",
+          "name": "Diagonal composition",
+          "definition": "Elements arranged diagonally for dynamic energy.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Action scenes",
+            "Movement",
+            "Tension"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "fg_mg_bg",
+          "name": "FG/MG/BG",
+          "definition": "Distinct foreground, middleground, and background layers.",
+          "difficulty": "beginner",
+          "examples": [
+            "Depth creation",
+            "Cinematic look",
+            "Scene complexity"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "mood_descriptors",
+      "name": "Mood Descriptors",
+      "author": "System",
+      "terms": [
+        {
+          "id": "suspenseful",
+          "name": "Suspenseful",
+          "definition": "Creating anticipation or anxiety in the viewer.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Thriller scenes",
+            "Mystery reveals",
+            "Chase sequences"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "romantic",
+          "name": "Romantic",
+          "definition": "Evoking intimacy, love, and softness.",
+          "difficulty": "beginner",
+          "examples": [
+            "Love scenes",
+            "First meetings",
+            "Soft lighting"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "nostalgic",
+          "name": "Nostalgic",
+          "definition": "Evoking longing for the past.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Flashbacks",
+            "Memory sequences",
+            "Vintage filters"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "tense",
+          "name": "Tense",
+          "definition": "High stress or strain in the atmosphere.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Confrontations",
+            "Time pressure",
+            "Danger"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "serene",
+          "name": "Serene",
+          "definition": "Calm, peaceful, and untroubled atmosphere.",
+          "difficulty": "beginner",
+          "examples": [
+            "Nature scenes",
+            "Meditation",
+            "Resolution"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "chaotic",
+          "name": "Chaotic",
+          "definition": "Disordered, confused, and active energy.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Battle scenes",
+            "Crowds",
+            "Disasters"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "melancholic",
+          "name": "Melancholic",
+          "definition": "Sad, pensive, and sorrowful tone.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Loss scenes",
+            "Rainy days",
+            "Goodbyes"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "hopeful",
+          "name": "Hopeful",
+          "definition": "Inspiring optimism and positive expectation.",
+          "difficulty": "beginner",
+          "examples": [
+            "Sunrise shots",
+            "Character growth",
+            "Resolutions"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "foreboding",
+          "name": "Foreboding",
+          "definition": "Implying something bad will happen.",
+          "difficulty": "advanced",
+          "examples": [
+            "Horror setup",
+            "Dark clouds",
+            "Ominous music"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "whimsical",
+          "name": "Whimsical",
+          "definition": "Playful, fanciful, and appealingly odd.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Fantasy worlds",
+            "Children's films",
+            "Quirky characters"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "camera_movement",
+      "name": "Camera Movement",
+      "author": "System",
+      "terms": [
+        {
+          "id": "dolly",
+          "name": "Dolly shot",
+          "definition": "Camera moves physically toward or away from subject on tracks.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Emotional reveals",
+            "Following action",
+            "Depth changes"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "tracking",
+          "name": "Tracking shot",
+          "definition": "Camera moves alongside the subject.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Long takes",
+            "Following shots",
+            "Graceful transitions"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "pan",
+          "name": "Pan",
+          "definition": "Camera rotates horizontally on a fixed axis.",
+          "difficulty": "beginner",
+          "examples": [
+            "Landscape reveals",
+            "Character follow",
+            "Scene scanning"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "tilt",
+          "name": "Tilt",
+          "definition": "Camera rotates vertically on a fixed axis.",
+          "difficulty": "beginner",
+          "examples": [
+            "Height reveals",
+            "Building shots",
+            "Power dynamics"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "zoom",
+          "name": "Zoom",
+          "definition": "Changing focal length to appear closer or further.",
+          "difficulty": "beginner",
+          "examples": [
+            "Emphasis",
+            "Drama",
+            "Quick focus"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "crane",
+          "name": "Crane shot",
+          "definition": "Camera moves high above via a mechanical arm.",
+          "difficulty": "advanced",
+          "examples": [
+            "Epic reveals",
+            "Overhead views",
+            "Production value"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "handheld",
+          "name": "Handheld",
+          "definition": "Shaky, realistic movement held by operator.",
+          "difficulty": "beginner",
+          "examples": [
+            "Documentary feel",
+            "Action chaos",
+            "Immediacy"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "steadicam",
+          "name": "Steadicam",
+          "definition": "Smooth movement using a stabilizing mount.",
+          "difficulty": "advanced",
+          "examples": [
+            "Long takes",
+            "Following shots",
+            "Controlled movement"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "whip_pan",
+          "name": "Whip pan",
+          "definition": "Extremely rapid horizontal pan that creates motion blur streaks and disorienting effect.",
+          "difficulty": "advanced",
+          "examples": [
+            "Time transitions",
+            "Action emphasis",
+            "Psychological disorientation"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "push_in",
+          "name": "Push-in",
+          "definition": "Camera physically moves closer to subject to increase intimacy or emphasize importance.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Revelation moments",
+            "Emotional intensity",
+            "Focus concentration"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "lens_techniques",
+      "name": "Lens Techniques",
+      "author": "System",
+      "terms": [
+        {
+          "id": "shallow_dof",
+          "name": "Shallow depth of field",
+          "definition": "Subject sharp, background blurred for focus isolation.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Portraits",
+            "Product focus",
+            "Romantic scenes"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "deep_focus",
+          "name": "Deep focus",
+          "definition": "Everything from foreground to background is sharp.",
+          "difficulty": "advanced",
+          "examples": [
+            "Citizen Kane style",
+            "Complex blocking",
+            "Environmental detail"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "rack_focus",
+          "name": "Rack focus",
+          "definition": "Shifting focus from one subject to another.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Attention shift",
+            "Reveals",
+            "Connection between subjects"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "wide_angle",
+          "name": "Wide-angle lens",
+          "definition": "Expands view, can distort edges for dramatic effect.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Architecture",
+            "Cramped spaces",
+            "Exaggeration"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "telephoto",
+          "name": "Telephoto lens",
+          "definition": "Compresses distance, brings background closer.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Stalker POV",
+            "Compressed crowds",
+            "Isolation"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "macro",
+          "name": "Macro shot",
+          "definition": "Extreme close-up of small objects.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Insects",
+            "Textures",
+            "Product details"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "anamorphic",
+          "name": "Anamorphic lens",
+          "definition": "Widescreen look with oval bokeh and signature flares.",
+          "difficulty": "advanced",
+          "examples": [
+            "Cinematic look",
+            "Sci-fi",
+            "High production"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "bokeh",
+          "name": "Bokeh",
+          "definition": "Aesthetic quality of the blur in out-of-focus areas.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Night lights",
+            "Romantic mood",
+            "Visual poetry"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "lens_flare",
+          "name": "Lens flare",
+          "definition": "Light scattering in lens system creating visual artifacts.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Sci-fi style",
+            "J.J. Abrams look",
+            "Sun shots"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "tilt_shift",
+          "name": "Tilt-shift",
+          "definition": "Focus manipulation making scenes look miniature.",
+          "difficulty": "advanced",
+          "examples": [
+            "Toy effect",
+            "Time lapse",
+            "Unique perspective"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "production_design",
+      "name": "Production Design",
+      "author": "System",
+      "terms": [
+        {
+          "id": "set_dressing",
+          "name": "Set dressing",
+          "definition": "Decorating the set with furniture, props, and details.",
+          "difficulty": "beginner",
+          "examples": [
+            "Period accuracy",
+            "Character reflection",
+            "World building"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "props",
+          "name": "Props",
+          "definition": "Items handled by actors that serve the story.",
+          "difficulty": "beginner",
+          "examples": [
+            "Weapons",
+            "Letters",
+            "Symbolic objects"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "costume",
+          "name": "Costume design",
+          "definition": "Attire worn by characters to reflect personality and era.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Character identity",
+            "Period films",
+            "Status indication"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "location_scouting",
+          "name": "Location scouting",
+          "definition": "Finding real-world places to shoot.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Authenticity",
+            "Unique backdrops",
+            "Practical considerations"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "art_direction",
+          "name": "Art direction",
+          "definition": "Overall visual style and tone of production.",
+          "difficulty": "advanced",
+          "examples": [
+            "Unified vision",
+            "Genre style",
+            "Brand identity"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "visual_motifs",
+          "name": "Visual motifs",
+          "definition": "Recurring visual elements with symbolic meaning.",
+          "difficulty": "advanced",
+          "examples": [
+            "Color symbolism",
+            "Repeated objects",
+            "Thematic imagery"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "period_accuracy",
+          "name": "Period accuracy",
+          "definition": "Settings and costumes matching a specific era.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Historical films",
+            "Retro aesthetics",
+            "Authenticity"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "color_symbolism",
+          "name": "Color symbolism",
+          "definition": "Use of color to represent ideas and emotions.",
+          "difficulty": "advanced",
+          "examples": [
+            "Red for danger",
+            "Blue for sadness",
+            "Thematic consistency"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "env_storytelling",
+          "name": "Environmental storytelling",
+          "definition": "Narrative communicated through set details.",
+          "difficulty": "advanced",
+          "examples": [
+            "Abandoned spaces",
+            "Character rooms",
+            "World history"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "practical_effects",
+          "name": "Practical effects",
+          "definition": "Physical special effects done on set.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Explosions",
+            "Animatronics",
+            "Weather effects"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "sound_design",
+      "name": "Sound Design",
+      "author": "System",
+      "terms": [
+        {
+          "id": "diegetic",
+          "name": "Diegetic sound",
+          "definition": "Sound emanating from the story world.",
+          "difficulty": "beginner",
+          "examples": [
+            "Dialogue",
+            "Radio music",
+            "Footsteps"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "non_diegetic",
+          "name": "Non-diegetic sound",
+          "definition": "Sound outside story world like score and narration.",
+          "difficulty": "beginner",
+          "examples": [
+            "Soundtrack",
+            "Voice-over",
+            "Sound effects for mood"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "sound_bridge",
+          "name": "Sound bridge",
+          "definition": "Sound carrying over from one scene to next.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Seamless transitions",
+            "Audio continuity",
+            "Narrative connection"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "foley",
+          "name": "Foley effects",
+          "definition": "Reproduction of everyday sound effects in post.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Footsteps",
+            "Clothing rustle",
+            "Object handling"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "ambient",
+          "name": "Ambient sound",
+          "definition": "Background noise establishing location.",
+          "difficulty": "beginner",
+          "examples": [
+            "City sounds",
+            "Nature",
+            "Room tone"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "voice_over",
+          "name": "Voice-over narration",
+          "definition": "Off-screen voice narrating content.",
+          "difficulty": "beginner",
+          "examples": [
+            "Documentary",
+            "Inner thoughts",
+            "Story exposition"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "sound_motif",
+          "name": "Sound motif",
+          "definition": "Recurring sound associated with character or idea.",
+          "difficulty": "advanced",
+          "examples": [
+            "Character themes",
+            "Leitmotifs",
+            "Symbolic sounds"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "audio_perspective",
+          "name": "Audio perspective",
+          "definition": "Matching sound to distance of source.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Close vs distant",
+            "POV audio",
+            "Immersive sound"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "silence",
+          "name": "Silence as sound",
+          "definition": "Strategic use of silence for dramatic impact.",
+          "difficulty": "advanced",
+          "examples": [
+            "Tension",
+            "Shock",
+            "Contemplation"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "layering",
+          "name": "Sound layering",
+          "definition": "Mixing multiple audio tracks for depth.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Complex soundscapes",
+            "Immersive audio",
+            "Action sequences"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    },
+    {
+      "id": "editing_techniques",
+      "name": "Editing Techniques",
+      "author": "System",
+      "terms": [
+        {
+          "id": "cut",
+          "name": "Cut",
+          "definition": "Instant transition from one shot to another.",
+          "difficulty": "beginner",
+          "examples": [
+            "Basic transitions",
+            "Pace control",
+            "Scene changes"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "fade",
+          "name": "Fade",
+          "definition": "Gradual transition to or from black.",
+          "difficulty": "beginner",
+          "examples": [
+            "Scene endings",
+            "Time passage",
+            "Dream sequences"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "dissolve",
+          "name": "Dissolve",
+          "definition": "One shot gradually replaces another.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Memory transitions",
+            "Time passage",
+            "Thoughtful pacing"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "jump_cut",
+          "name": "Jump cut",
+          "definition": "Abrupt transition skipping time within same frame.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Disorientation",
+            "Time compression",
+            "Energy"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "match_cut",
+          "name": "Match cut",
+          "definition": "Cut matching visual or audio elements between scenes.",
+          "difficulty": "advanced",
+          "examples": [
+            "2001 bone to spacecraft",
+            "Thematic connections",
+            "Visual rhymes"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "cross_cutting",
+          "name": "Cross-cutting",
+          "definition": "Alternating between two simultaneous scenes.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Parallel action",
+            "Building tension",
+            "Comparisons"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "montage",
+          "name": "Montage",
+          "definition": "Sequence compressing time or information.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Training sequences",
+            "Passage of time",
+            "Emotional build"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "continuity",
+          "name": "Continuity editing",
+          "definition": "Seamless flow between shots maintaining spatial coherence.",
+          "difficulty": "beginner",
+          "examples": [
+            "Invisible editing",
+            "180-degree rule",
+            "Match on action"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "pacing",
+          "name": "Pacing rhythm",
+          "definition": "Tempo of cuts creating mood and energy.",
+          "difficulty": "intermediate",
+          "examples": [
+            "Fast cuts for action",
+            "Slow for drama",
+            "Rhythmic editing"
+          ],
+          "author": "System",
+          "likes": 0
+        },
+        {
+          "id": "parallel",
+          "name": "Parallel editing",
+          "definition": "Showing two storylines simultaneously.",
+          "difficulty": "advanced",
+          "examples": [
+            "Converging narratives",
+            "Suspense building",
+            "Thematic juxtaposition"
+          ],
+          "author": "System",
+          "likes": 0
+        }
+      ]
+    }
+  ]
+}

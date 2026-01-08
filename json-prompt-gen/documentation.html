@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - JSON Prompt Gen</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/css/theme.css">
+    <link rel="stylesheet" href="src/css/main.css">
+    <style>
+        /* Documentation-Specific Styles */
+        /* body background inherited from main.css */
+
+        .docs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Centered Sticky Navigation Bar */
+        .docs-sidebar {
+            position: sticky;
+            top: 100px;
+            z-index: 90;
+            background: rgba(20, 20, 30, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 8px 12px;
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            width: fit-content;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .docs-sidebar h3 {
+            display: none;
+        }
+
+        .docs-sidebar h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin: 0 0 16px;
+            font-weight: 700;
+        }
+
+        .docs-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .docs-nav li {
+            margin-bottom: 0;
+        }
+
+        .docs-nav a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 7px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .docs-nav a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+
+        .docs-nav a.active {
+            background: rgba(165, 21, 209, 0.836);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(161, 2, 234, 0.3);
+        }
+
+        /* Main Content */
+        .docs-content {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .docs-hero {
+            margin-bottom: 40px;
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+
+        .docs-hero h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0 0 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .docs-hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .docs-divider-hero {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 0 15px;
+            width: 77%;
+            align-self: center;
+        }
+
+        /* Documentation Sections */
+        .doc-section {
+            margin-top: 60px;
+            margin-bottom: 30px;
+            scroll-margin-top: 100px;
+        }
+
+        .doc-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 12px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(165deg, #df0acd, #f12bffd8, #c664ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            width: fit-content;
+            text-align: center;
+        }
+
+        .doc-section .section-underline {
+            height: 2px;
+            width: 120px;
+            background: linear-gradient(90deg, transparent, rgb(228, 22, 255), transparent);
+            margin: 0 auto 30px;
+            border-radius: 2px;
+        }
+
+        .doc-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 40px auto 20px;
+            color: #ffebfc;
+            text-align: center;
+        }
+
+        .doc-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 40px 0 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .doc-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin: 15px 0;
+        }
+
+        .doc-section ul,
+        .doc-section ol {
+            margin: 5px 0;
+            padding-left: 28px;
+        }
+
+        .doc-section li {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1px;
+        }
+
+        .doc-section strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .docs-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 0 25px;
+        }
+
+        /* Feature Boxes */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(216, 62, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .feature-box h4 {
+            margin: 0 0 12px;
+            font-size: 1.1rem;
+        }
+
+        .feature-box p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            background: rgba(105, 127, 239, 0.08);
+            border-left: 4px solid #697fef;
+            border-radius: 0 8px 8px 0;
+            padding: 20px 24px;
+            margin: 30px 0;
+        }
+
+        .callout.warning {
+            background: rgba(255, 193, 7, 0.08);
+            border-left-color: #ffc107;
+        }
+
+        .callout.success {
+            background: rgba(0, 230, 118, 0.08);
+            border-left-color: #00e676;
+        }
+
+        .callout h4 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 0.98rem;
+        }
+
+        /* Step Cards */
+        .step-card {
+            background: rgba(20, 20, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 24px 0;
+        }
+
+        .step-card h4 {
+            margin: 0 0 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .step-card .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #b84283, #ce14c8);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .step-card p {
+            margin: 0;
+            font-size: 1rem;
+            padding-left: 44px;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 32px;
+        }
+
+        .faq-item h4 {
+            margin: 0 0 12px;
+            font-size: 1.15rem;
+            color: #fff;
+        }
+
+        .faq-item p {
+            margin: 0;
+        }
+
+        /* Footer Note */
+        .docs-footer-note {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .docs-container {
+                padding: 0 16px 60px;
+            }
+
+            .docs-sidebar {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                justify-content: flex-start;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                padding: 12px 16px;
+                margin: 0 0 40px;
+                top: 70px;
+                /* Adjust for header height */
+                background: rgba(15, 15, 25, 0.95);
+                /* Higher opacity for readability */
+            }
+
+            .docs-nav {
+                width: max-content;
+                /* Allow content to dictate width for scrolling */
+                padding-right: 16px;
+                /* Padding for scroll end */
+            }
+
+            /* Hide scrollbar for cleaner look - Supporting all major browsers */
+            .docs-sidebar::-webkit-scrollbar {
+                display: none;
+                /* Safari and Chrome */
+            }
+
+            .docs-sidebar {
+                -ms-overflow-style: none;
+                /* IE and Edge */
+            }
+
+            @supports (scrollbar-width: none) {
+                .docs-sidebar {
+                    scrollbar-width: none;
+                    /* Firefox and Modern Chrome */
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            .docs-hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .docs-hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .doc-section h2 {
+                font-size: 1.4rem;
+            }
+
+            .doc-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Documentation Utility Classes */
+        .doc-list-step {
+            padding-left: 44px;
+            margin-top: 12px;
+        }
+
+        .doc-list-callout {
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title gradient-text">Menu</span>
+            <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section">
+                <h4 class="sidebar-section-title">Navigation</h4>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <rect width="20" height="20" x="2" y="2" rx="2.18" ry="2.18" />
+                                <line x1="7" x2="7" y1="2" y2="22" />
+                                <line x1="17" x2="17" y1="2" y2="22" />
+                                <line x1="2" x2="22" y1="12" y2="12" />
+                                <line x1="2" x2="7" y1="7" y2="7" />
+                                <line x1="2" x2="7" y1="17" y2="17" />
+                                <line x1="17" x2="22" y1="17" y2="17" />
+                                <line x1="17" x2="22" y1="7" y2="7" />
+                            </svg> JSON Generator
+                        </a></li>
+                    <li><a href="index.html#dictionary-section" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                            </svg> Dictionary
+                        </a></li>
+                    <li><a href="index.html#llm-section" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M12 8V4H8" />
+                                <rect width="16" height="12" x="4" y="8" rx="2" />
+                                <path d="M2 14h2" />
+                                <path d="M20 14h2" />
+                                <path d="M15 13v2" />
+                                <path d="M9 13v2" />
+                            </svg> LLM Integration
+                        </a></li>
+                    <li><a href="index.html#history-section" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                <path d="M3 3v5h5" />
+                                <path d="M12 7v5l4 2" />
+                            </svg> History
+                        </a></li>
+                    <li><a href="index.html#pricing-section" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <rect width="20" height="14" x="2" y="5" rx="2" />
+                                <line x1="2" x2="22" y1="10" y2="10" />
+                            </svg> Pricing
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h4 class="sidebar-section-title">Quick Actions</h4>
+                <ul>
+                    <li><a href="index.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                                <path d="M21 3v5h-5" />
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                                <path d="M8 16H3v5" />
+                            </svg> Reset Generator
+                        </a></li>
+                    <li><a href="index.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" x2="12" y1="15" y2="3" />
+                            </svg> Export JSON
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h4 class="sidebar-section-title">Resources</h4>
+                <ul>
+                    <li><a href="about.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg> About Us
+                        </a></li>
+                    <li><a href="contact.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg> Contact
+                        </a></li>
+                    <li><a href="security.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                                <path d="m9 12 2 2 4-4" />
+                            </svg> Security
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h4 class="sidebar-section-title">Support</h4>
+                <ul>
+                    <li><a href="documentation.html" class="sidebar-link active">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                            </svg> Documentation
+                        </a></li>
+                    <li><a href="documentation.html#faq" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                <path d="M12 17h.01" />
+                            </svg> FAQ
+                        </a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>&copy; 2026 JSON Prompt Gen</p>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <div class="logo">
+                    <img src="src/assets/icon-192.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">JSON Generator</a></li>
+                    <li><a href="index.html#dictionary-section">Dictionary</a></li>
+                    <li><a href="index.html#llm-section">LLM Integration</a></li>
+                    <li><a href="index.html#history-section">History</a></li>
+                    <li><a href="index.html#pricing-section">Pricing</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-container">
+        <!-- Hero Section -->
+        <div class="docs-hero text-center">
+            <h1 class="gradient-text">JSON Prompt Gen Documentation</h1>
+            <div class="section-underline"></div>
+            <p class="subtitle">Everything you need to know to create cinematic video prompts with professional
+                precision</p>
+        </div>
+
+        <div class="docs-divider-hero"></div>
+
+        <!-- Sticky Centered Navigation -->
+        <aside class="docs-sidebar">
+            <ul class="docs-nav">
+                <li><a href="#quick-start" class="active">Quick Start</a></li>
+                <li><a href="#core-concepts">Core Concepts</a></li>
+                <li><a href="#ai-enhancement">AI Enhancement</a></li>
+                <li><a href="#visual-dictionary">Visual Dictionary</a></li>
+                <li><a href="#keyboard-shortcuts">Shortcuts</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#professional-tips">Professional Tips</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Documentation Content -->
+        <main class="docs-content">
+
+
+
+            <!-- Quick Start Guide -->
+            <section id="quick-start" class="doc-section">
+                <h2>Quick Start Guide</h2>
+                <div class="section-underline"></div>
+                <h3>Your First Cinematic Prompt in 60 Seconds</h3>
+
+                <div class="step-card">
+                    <h4><span class="step-number">1</span> Create Your Scene</h4>
+                    <p>Click the "+" button in the Prompt Generator tab to add your first scene. This opens the
+                        scene editor where you'll define your visual narrative.</p>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">2</span> Craft Your Description</h4>
+                    <p>In the main text area, describe your scene with cinematic specificity. Instead of "a car
+                        driving," try "A vintage red convertible speeding along a coastal highway at sunset, ocean
+                        waves crashing below."</p>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">3</span> Enhance with Professional Parameters</h4>
+                    <p>Use the parameter pills to refine your vision:</p>
+                    <ul class="doc-list-step">
+                        <li><strong>Camera</strong>: Select movements like "Dolly Zoom," "Eye Level," or
+                            "Aerial View"</li>
+                        <li><strong>Lighting</strong>: Choose moods such as "Golden Hour," "Neon Cyberpunk," or
+                            "Backlit"</li>
+                        <li><strong>Negative</strong>: Add or select negative keywords like "Unrealistic," "Blurry," or
+                            "Deformed"</li>
+                        <li><strong>Parameter</strong>: Set project-wide settings (aspect ratio, resolution, frame rate,
+                            target model) that apply to all scenes unless individually overridden</li>
+                    </ul>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">4</span> Generate Your JSON</h4>
+                    <p>Click the "Generate JSON" button in the Prompt Generator tab. The system instantly compiles your
+                        scene into a structured JSON format optimized for the choosen AI video platform.</p>
+                </div>
+
+                <div class="step-card">
+                    <h4><span class="step-number">5</span> Export and Execute</h4>
+                    <p>Use the clipboard icon to copy your JSON directly, or you can simply download it as a file. Paste
+                        this into your preferred AI video generation tool (Veo, Sora, Runway, Luma, Kling) to bring your
+                        vision to life.</p>
+                </div>
+
+                <!--<div class="callout">
+                    <h4>💡 Pro Tip</h4>
+                    <p>For multi-scene narratives, use the timeline controls to sequence your shots. Each scene builds
+                        upon the previous, creating cinematic continuity.</p>
+                </div>-->
+            </section>
+
+            <div class="docs-divider"></div>
+
+            <!-- Core Concepts -->
+            <section id="core-concepts" class="doc-section">
+                <h2>Core Concepts</h2>
+                <div class="section-underline"></div>
+
+                <h3>Multi-Scene Narrative Construction</h3>
+                <p>JSON Prompt Gen transforms complex storytelling into manageable components through its scene-based
+                    architecture. Each scene operates as an independent cinematic unit while contributing to your
+                    overall narrative flow.</p>
+
+                <h4>Scene Anatomy</h4>
+                <p>Every scene contains four essential elements that work together to create professional results:</p>
+
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <h4>Subject & Action</h4>
+                        <p>The core narrative element describing who/what is the focus and what they're doing</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Camera Choreography</h4>
+                        <p>Precise camera movements and positions that guide the viewer's eye</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Lighting Atmosphere</h4>
+                        <p>Mood-setting illumination that transforms visual storytelling</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Negative Guidance</h4>
+                        <p>Elements to exclude (blurry details, unwanted artifacts, style drift)</p>
+                    </div>
+                </div>
+
+                <h3>Version Control & History</h3>
+                <p>Professional filmmaking requires iteration. Our history system ensures you never lose creative
+                    progress:</p>
+
+                <ul>
+                    <li><strong>Per-Scene Undo/Redo</strong>: Each scene maintains its own history stack, allowing
+                        granular control</li>
+                    <li><strong>Checkpoint Restoration</strong>: Create named checkpoints for major milestones and
+                        restore them instantly</li>
+                </ul>
+
+                <div class="callout success">
+                    <h4>✅ Best Practice</h4>
+                    <p>Create a checkpoint before experimenting with radical changes to your prompt structure.</p>
+                </div>
+            </section>
+
+            <div class="docs-divider"></div>
+
+            <!-- AI Enhancement -->
+            <section id="ai-enhancement" class="doc-section">
+                <h2>AI Enhancement Workflow</h2>
+                <div class="section-underline"></div>
+
+                <h3>Bring Your Own Key (BYOK) Architecture</h3>
+                <p>JSON Prompt Gen respects your privacy and budget control through its zero-server architecture. Your
+                    API keys and prompts remain on your device, never transmitted to third-party servers.</p>
+
+                <h4>Setting Up Your LLM Connection</h4>
+                <ol>
+                    <li><strong>Access Integration Panel</strong>: Click the AI assistant icon (robot) in the sidebar
+                        menu or click "LLM Integration" text in the top navigation bar</li>
+                    <li><strong>Select Provider</strong>: Choose from OpenAI, Anthropic (Claude), or Google Gemini based
+                        on your needs and existing subscriptions</li>
+                    <li><strong>Enter Credentials</strong>: Input your API key securely—keys are encrypted with AES-256
+                        before storage in your browser</li>
+                    <li><strong>Configure Settings</strong>: Set default parameter model version for consistent
+                        results</li>
+                </ol>
+
+                <h4>AI Enhancement Features</h4>
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <h4>Prompt Expansion</h4>
+                        <p>Use Enhance button to Transform simple descriptions into rich cinematic narratives with
+                            professional terminology</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Quality Optimization</h4>
+                        <p>Use Enhance button for refinement of prompts to reduce common AI video generation issues</p>
+                    </div>
+                </div>
+
+                <div class="callout warning">
+                    <h4>🔒 Security Assurance</h4>
+                    <p>All API communication occurs directly between your browser and the LLM provider. We implement
+                        client-side encryption and never store your keys on servers. A comprehensive audit log tracks
+                        all AI interactions for transparency.</p>
+                </div>
+            </section>
+
+            <div class="docs-divider"></div>
+
+            <!-- Visual Dictionary -->
+            <section id="visual-dictionary" class="doc-section">
+                <h2>Cinematic Dictionary</h2>
+                <div class="section-underline"></div>
+
+                <h3>Your Cinematic Knowledge Base</h3>
+                <p>The Cinematic Terms Dictionary transforms technical filmmaking terminology into accessible, bridging
+                    the gap between creative vision and technical execution.</p>
+
+                <h4>Browsing the Dictionary</h4>
+                <p>Access the dictionary through the dedicated tab in the main navigation. Content is organized into
+                    intuitive categories:</p>
+
+                <ul>
+                    <li><strong>Camera Techniques</strong>: Shot types (Close-up, Wide shot), Movements (Pan, Tilt,
+                        Handheld), and Angles (High Angle, Dutch Angle)</li>
+                    <li><strong>Lighting Setups</strong>: Quality (Hard, Soft), Direction (Front, Side, Back), and Mood
+                        (Suspenseful, Hopeful, Whimsical)</li>
+                    <li><strong>Color Theory</strong>: Palettes (Complementary colors, Analogous colors), Grading Styles
+                        (Teal and Orange, Monochromatic), and emotional impact</li>
+                    <li><strong>Composition Principles</strong>: Visual rules (rule of thirds, leading lines), depth
+                        creation (foreground/middleground/background), and balance techniques</li>
+                    <li><strong>Mood & Atmosphere</strong>: Descriptive terms that convey emotional tone and narrative
+                        context</li>
+                </ul>
+
+                <h4>Interactive Learning</h4>
+                <ul>
+                    <!--<li><strong>Visual Examples</strong>: Each term includes representative images showing practical
+                        application</li>-->
+                    <li><strong>Usage Examples</strong>: See how terms integrate naturally into prompt structures</li>
+                    <li><strong>One-Click Copy</strong>: Instantly copy any term to your clipboard for immediate use in
+                        your prompts</li>
+                    <li><strong>Community Contributions</strong>: Add your own definitions, examples, or categories to
+                        expand the knowledge base</li>
+                </ul>
+
+                <!--<div class="callout">
+                    <h4>🎬 Professional Development</h4>
+                    <p>The dictionary includes "Filmmaker Notes" sections—insider perspectives from professional
+                        cinematographers explaining how these techniques create emotional impact in real productions.
+                    </p>
+                </div>-->
+            </section>
+
+            <div class="docs-divider"></div>
+
+            <!-- Keyboard Shortcuts -->
+            <section id="keyboard-shortcuts" class="doc-section">
+                <h2>Keyboard Shortcuts</h2>
+                <div class="section-underline"></div>
+
+                <p>Speed up your workflow with these keyboard shortcuts. All shortcuts work across the application.</p>
+
+                <h3>Navigation</h3>
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>1-5</kbd></h4>
+                        <p>Switch between main sections (Generator, Dictionary, LLM, History, Pricing)</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>H</kbd></h4>
+                        <p>Toggle sidebar menu</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>K</kbd></h4>
+                        <p>Focus search (in Dictionary section)</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>?</kbd></h4>
+                        <p>Show Getting Started guide</p>
+                    </div>
+                </div>
+
+                <h3>Prompt Building</h3>
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>Enter</kbd></h4>
+                        <p>Generate JSON prompt</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>N</kbd></h4>
+                        <p>Add new scene</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>S</kbd></h4>
+                        <p>Save/Export JSON</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>C</kbd></h4>
+                        <p>Copy output JSON to clipboard</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>R</kbd></h4>
+                        <p>Reset generator (requires confirmation)</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>Z</kbd></h4>
+                        <p>Undo AI enhancement (if available)</p>
+                    </div>
+                </div>
+
+                <h3>UI Controls</h3>
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <h4><kbd>Esc</kbd></h4>
+                        <p>Close active modal/sidebar</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Tab</kbd> / <kbd>Shift+Tab</kbd></h4>
+                        <p>Navigate between form fields</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4><kbd>Ctrl</kbd> + <kbd>/</kbd></h4>
+                        <p>Show this shortcuts reference</p>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <h4>💡 Platform Notes</h4>
+                    <p>On macOS, use <kbd>⌘</kbd> instead of <kbd>Ctrl</kbd> for all shortcuts. Keyboard shortcuts are
+                        designed to work alongside browser defaults without conflicts.</p>
+                </div>
+            </section>
+
+            <div class="docs-divider"></div>
+
+            <!-- FAQ -->
+            <section id="faq" class="doc-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="section-underline"></div>
+
+                <h3>Privacy & Security</h3>
+
+                <div class="faq-item">
+                    <h4>Q: Is my data truly private?</h4>
+                    <p>A: Absolutely. JSON Prompt Gen operates entirely within your browser. No prompt content, API
+                        keys, or personal data is transmitted to external servers unless you explicitly use the feedback
+                        form. Your API keys are encrypted with AES-256 encryption before storage in your browser's local
+                        storage.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q: How are API keys protected?</h4>
+                    <p>A: Keys are encrypted using device-specific fingerprints and stored only in your browser's local
+                        storage. We use industry-standard encryption practices with zero-knowledge architecture—meaning
+                        even we cannot access your keys.</p>
+                </div>
+
+                <h3>Technical Compatibility</h3>
+
+                <div class="faq-item">
+                    <h4>Q: Which AI video platforms support this JSON format?</h4>
+                    <p>A: Our output is optimized for advanced platforms including Google Veo, OpenAI Sora, Runway
+                        Gen-3, and Luma Labs. Each platform has specific schema requirements, and our generator
+                        automatically formats your prompts accordingly based on your selected target platform.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q: Can I use this offline?</h4>
+                    <p>A: Yes! As a Progressive Web App (PWA), JSON Prompt Gen can be installed on your device and used
+                        completely offline for prompt creation and editing. AI enhancement features require internet
+                        connectivity to communicate with LLM providers.</p>
+                </div>
+
+                <h3>Workflow Optimization</h3>
+
+                <div class="faq-item">
+                    <h4>Q: How do I create consistent character appearances across multiple scenes?</h4>
+                    <p>A: Use the Character Bible feature (available in PRO tier) to define character details once, then
+                        reference them across scenes. For the free version, include consistent descriptive details in
+                        each scene's negative prompts to minimize drift.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q: What's the most effective way to fix common AI video issues?</h4>
+                    <p>A: Leverage negative prompts strategically: for morphing issues, add "consistent character
+                        design, stable anatomy"; for blurry outputs, include "sharp focus, high detail, 8k resolution";
+                        for unwanted elements, specify exactly what to exclude.</p>
+                </div>
+
+                <h3>Getting Support</h3>
+
+                <div class="faq-item">
+                    <h4>Q: How do I report bugs or request features?</h4>
+                    <p>A: Use the built-in feedback form accessible through the help menu. For urgent issues, check our
+                        community forum where our development team actively monitors and responds to user reports.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q: Are there video tutorials available?</h4>
+                    <p>A: Yes! Visit our documentation portal for step-by-step video guides covering everything from
+                        basic prompt creation to advanced cinematic techniques. New tutorials are added monthly based on
+                        community requests.</p>
+                </div>
+            </section>
+
+            <div class="docs-divider"></div>
+
+            <!-- Professional Tips -->
+            <section id="professional-tips" class="doc-section">
+                <h2>Professional Tips for Maximum Impact</h2>
+                <div class="section-underline"></div>
+
+                <h3>Cinematic Prompt Engineering Best Practices</h3>
+
+                <div class="callout">
+                    <h4>The Three-Layer Approach</h4>
+                    <p>Structure your prompts with three distinct layers:</p>
+                    <ol class="doc-list-callout">
+                        <li><strong>Subject Layer</strong>: Who/what is the focus</li>
+                        <li><strong>Action Layer</strong>: What is happening dynamically</li>
+                        <li><strong>Atmosphere Layer</strong>: How it feels emotionally and visually</li>
+                    </ol>
+                </div>
+
+                <h4>Parameter Hierarchy</h4>
+                <p>Prioritize your parameters in this order for optimal results:</p>
+                <ol>
+                    <li>Camera movement and position</li>
+                    <li>Lighting quality and direction</li>
+                    <li>Color palette and grading</li>
+                    <li>Composition rules</li>
+                    <li>Negative guidance</li>
+                </ol>
+
+                <h4>Platform-Specific Optimization</h4>
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <h4>Veo</h4>
+                        <p>Emphasize camera movement details and temporal continuity</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Sora</h4>
+                        <p>Focus on physics accuracy and material properties</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Runway</h4>
+                        <p>Prioritize stylistic consistency and artistic direction</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Luma</h4>
+                        <p>Optimize for high-fidelity motion and naturalistic lighting transitions</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Kling</h4>
+                        <p>Focus on complex human-centric actions and temporal stability</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer Note -->
+            <div class="docs-footer-note">
+                <p><em>Documentation last updated: January 2026</em></p>
+                <!--<p>For the latest features and updates, visit our community forum</p>-->
+            </div>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="src/assets/icon-192.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+                <p>
+                    Professional AI video prompt generator. <br>Design cinematic shots with code.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="security.html">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="legal/terms.html">Terms of Service</a></li>
+                    <li><a href="legal/cookies.html">Cookie Policy</a></li>
+                    <li><a href="legal/disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="documentation.html">Documentation</a></li>
+                    <li><a href="documentation.html#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const sidebarClose = document.getElementById('sidebar-close');
+
+        function openSidebar() {
+            sidebar.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+        if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Only prevent default for local anchors, not sidebar-link anchors that point to other pages
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+
+                        // Update active state
+                        document.querySelectorAll('.docs-nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Update active navigation on scroll
+        const sections = document.querySelectorAll('.doc-section');
+        const navLinks = document.querySelectorAll('.docs-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <!-- Global SVG Assets -->
+    <svg class="svg-asset-container" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="sidebarIconGradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"
+                gradientTransform="rotate(345, 12, 12)">
+                <stop offset="0%" stop-color="#697fef" />
+                <stop offset="50%" stop-color="#ff3bf8" />
+                <stop offset="100%" stop-color="#ffdd1d" />
+            </linearGradient>
+        </defs>
+    </svg>
+</body>
+
+</html>

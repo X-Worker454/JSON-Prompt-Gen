@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Prompt Gen</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/css/theme.css">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/history.css">
+    <link rel="stylesheet" href="src/css/output.css">
+    <link rel="stylesheet" href="src/css/global-params.css">
+    <link rel="stylesheet" href="src/css/dictionary.css">
+    <link rel="stylesheet" href="src/css/integration.css">
+    <link rel="stylesheet" href="src/css/pricing.css">
+    <link rel="stylesheet" href="src/css/templates.css">
+
+    <!-- PWA (Managed by vite-plugin-pwa) -->
+    <link rel="icon" type="image/png" href="src/assets/favicon.png">
+    <link rel="apple-touch-icon" href="src/assets/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="JSON Prompt Gen">
+    <meta property="og:description" content="Generate professional JSON prompts for AI video generation.">
+    <meta property="og:image" content="src/assets/icon-512.png">
+    <meta property="og:url" content="https://json-prompt-gen.app/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Google Analytics -->
+    <!-- Replace G-XXXXXXXXXX with your actual Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- Error Tracking (Sentry Placeholder) -->
+    <script>
+        window.onerror = function (message, source, lineno, colno, error) {
+            console.warn('Sentry Event (Placeholder):', { message, source, lineno, colno, error });
+            // In production: Sentry.captureException(error);
+        };
+    </script>
+</head>
+
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title gradient-text">Menu</span>
+            <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section">
+                <h4 class="sidebar-section-title">Navigation</h4>
+                <ul>
+                    <li><a href="#" data-section="generator-section" class="sidebar-link active">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <rect width="20" height="20" x="2" y="2" rx="2.18" ry="2.18" />
+                                <line x1="7" x2="7" y1="2" y2="22" />
+                                <line x1="17" x2="17" y1="2" y2="22" />
+                                <line x1="2" x2="22" y1="12" y2="12" />
+                                <line x1="2" x2="7" y1="7" y2="7" />
+                                <line x1="2" x2="7" y1="17" y2="17" />
+                                <line x1="17" x2="22" y1="17" y2="17" />
+                                <line x1="17" x2="22" y1="7" y2="7" />
+                            </svg> JSON Generator
+                        </a></li>
+                    <li><a href="#" data-section="dictionary-section" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                            </svg> Dictionary
+                        </a></li>
+                    <li><a href="#" data-section="llm-section" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M12 8V4H8" />
+                                <rect width="16" height="12" x="4" y="8" rx="2" />
+                                <path d="M2 14h2" />
+                                <path d="M20 14h2" />
+                                <path d="M15 13v2" />
+                                <path d="M9 13v2" />
+                            </svg> LLM Integration
+                        </a></li>
+                    <li><a href="#" data-section="history-section" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                <path d="M3 3v5h5" />
+                                <path d="M12 7v5l4 2" />
+                            </svg> History
+                        </a></li>
+                    <li><a href="#" data-section="pricing-section" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <rect width="20" height="14" x="2" y="5" rx="2" />
+                                <line x1="2" x2="22" y1="10" y2="10" />
+                            </svg> Pricing
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h4 class="sidebar-section-title">Quick Actions</h4>
+                <ul>
+                    <li><a href="#" id="sidebar-reset-btn" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+                                <path d="M21 3v5h-5" />
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+                                <path d="M8 16H3v5" />
+                            </svg> Reset Generator
+                        </a></li>
+                    <li><a href="#" id="sidebar-export-btn" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" x2="12" y1="15" y2="3" />
+                            </svg> Export JSON
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h4 class="sidebar-section-title">Resources</h4>
+                <ul>
+                    <li><a href="about.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg> About Us
+                        </a></li>
+                    <li><a href="contact.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg> Contact
+                        </a></li>
+                    <li><a href="security.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                                <path d="m9 12 2 2 4-4" />
+                            </svg> Security
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h4 class="sidebar-section-title">Support</h4>
+                <ul>
+                    <li><a href="documentation.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                            </svg> Documentation
+                        </a></li>
+                    <li><a href="documentation.html#faq" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                <path d="M12 17h.01" />
+                            </svg> FAQ
+                        </a></li>
+                    <li><button id="sidebar-feedback-btn" class="sidebar-link btn-reset-style" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg> Send Feedback
+                        </button></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>&copy; 2026 JSON Prompt Gen</p>
+        </div>
+    </aside>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Header separated from app-container -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <div class="logo">
+                    <img src="src/assets/icon-192.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" data-section="generator-section" class="active">JSON Generator</a></li>
+                    <li><a href="#" data-section="dictionary-section">Dictionary</a></li>
+                    <li><a href="#" data-section="llm-section">LLM Integration</a></li>
+                    <li><a href="#" data-section="history-section">History</a></li>
+                    <li><a href="#" data-section="pricing-section">Pricing</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section text-center">
+                <h2 class="gradient-text">
+                    Professional JSON Prompt Generator</h2>
+                <div class="section-underline"></div>
+                <p>
+                    Create cinematic AI video prompts for platforms like VEO with precision and ease
+                </p>
+            </section>
+
+
+
+            <!-- Generator Section -->
+
+            <section id="generator-section" class="card">
+                <div class="card-header">
+                    <h3>Prompt Generator</h3>
+                    <div class="card-actions">
+                        <!-- Mode Switcher -->
+                        <div class="mode-switcher">
+                            <input type="radio" id="mode-json" name="gen-mode" value="json" checked>
+                            <label for="mode-json" title="Standard JSON Output">JSON</label>
+
+                            <input type="radio" id="mode-ai" name="gen-mode" value="ai">
+                            <label for="mode-ai" title="AI Enhanced JSON Output">AI Mode</label>
+
+                            <div class="mode-bg"></div>
+                        </div>
+                        <button class="btn btn-secondary btn-icon" id="reset-btn" title="Reset">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                <path d="M3 3v5h5" />
+                            </svg>
+                        </button>
+                        <button id="generate-btn" class="btn btn-primary btn-icon" title="Generate JSON">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="scenes-container">
+                    <!-- Scenes will be added here dynamically -->
+                    <div class="scene-item" data-scene-id="1">
+                        <div class="scene-header">
+                            <h4 class="scene-title">
+                                Scene 1</h4>
+                            <div class="scene-actions">
+                                <button class="scene-undo-btn hidden" title="Undo AI Enhancement">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M3 10h10a5 5 0 0 1 5 5v2" />
+                                        <path d="m3 10 6 6" />
+                                        <path d="m3 10 6-6" />
+                                    </svg>
+                                </button>
+                                <button class="scene-redo-btn hidden" title="Redo AI Enhancement">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M21 10H11a5 5 0 0 0-5 5v2" />
+                                        <path d="m21 10-6 6" />
+                                        <path d="m21 10-6-6" />
+                                    </svg>
+                                </button>
+                                <button class="scene-enhance-btn" title="Enhance with AI">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        class="enhance-stars-icon">
+                                        <path
+                                            d="M15.5 5.5 L16.8 10.2 L21.5 11.5 L16.8 12.8 L15.5 17.5 L14.2 12.8 L9.5 11.5 L14.2 10.2 Z" />
+                                        <path
+                                            d="M5.5 2.5 L6.2 4.8 L8.5 5.5 L6.2 6.2 L5.5 8.5 L4.8 6.2 L2.5 5.5 L4.8 4.8 Z" />
+                                        <path
+                                            d="M6.5 15.5 L7.2 17.8 L9.5 18.5 L7.2 19.2 L6.5 21.5 L5.8 19.2 L3.5 18.5 L5.8 17.8 Z" />
+                                    </svg>
+                                </button>
+                                <button class="remove-scene-btn" onclick="removeScene(this)" title="Remove Scene">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path
+                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                        </path>
+                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group mb-30">
+                            <label class="section-label">Scene
+                                Description</label>
+                            <textarea class="scene-description"
+                                placeholder="Describe your scene in detail..."></textarea>
+                        </div>
+                        <div class="form-group mb-30">
+                            <label class="section-label">Camera Angle</label>
+                            <input type="hidden" class="scene-camera-value" value="">
+                            <div class="pills-container camera-pills">
+                                <button class="pill" data-value="pan_left">Pan Left</button>
+                                <button class="pill" data-value="pan_right">Pan Right</button>
+                                <button class="pill" data-value="zoom_in">Zoom In</button>
+                                <button class="pill" data-value="zoom_out">Zoom Out</button>
+                                <button class="pill" data-value="dolly_zoom">Dolly Zoom</button>
+                                <button class="pill" data-value="tracking_shot">Track</button>
+                                <button class="pill" data-value="eye_level">Eye Level</button>
+                                <button class="pill" data-value="low_angle">Low Angle</button>
+                                <button class="pill" data-value="high_angle">High Angle</button>
+                                <button class="pill" data-value="aerial_view">Aerial View</button>
+                            </div>
+                        </div>
+                        <div class="form-group mb-30">
+                            <label class="section-label">Lighting Style</label>
+                            <input type="hidden" class="scene-lighting-value" value="">
+                            <div class="pills-container lighting-pills">
+                                <button class="pill" data-value="natural">Natural</button>
+                                <button class="pill" data-value="golden_hour">Golden Hour</button>
+                                <button class="pill" data-value="blue_hour">Blue Hour</button>
+                                <button class="pill" data-value="neon">Neon Cyberpunk</button>
+                                <button class="pill" data-value="studio">Studio</button>
+                                <button class="pill" data-value="dramatic">Dramatic</button>
+                                <button class="pill" data-value="cinematic">Cinematic</button>
+                                <button class="pill" data-value="softbox">Softbox</button>
+                                <button class="pill" data-value="backlit">Backlit</button>
+                                <button class="pill" data-value="rim_light">Rim Light</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="section-label">Negative Prompts</label>
+                            <div class="pills-container negative-pills mb-12">
+                                <button class="pill" data-value="blurry">Blurry</button>
+                                <button class="pill" data-value="low_res">Low Res</button>
+                                <button class="pill" data-value="deformed">Deformed</button>
+                                <button class="pill" data-value="watermark">Watermark</button>
+                                <button class="pill" data-value="flicker">Flicker</button>
+                                <button class="pill" data-value="grainy">Grainy</button>
+                                <button class="pill" data-value="overexposed">Overexposed</button>
+                                <button class="pill" data-value="extra_limbs">Extra Limbs</button>
+                                <button class="pill" data-value="distorted">Distorted</button>
+                                <button class="pill" data-value="unrealistic">Unrealistic</button>
+                            </div>
+                            <input type="text" class="scene-negative-prompt"
+                                placeholder="Or type custom elements to exclude..."
+                                aria-label="Custom negative prompts">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-scene-area">
+                    <button id="add-scene-btn" class="btn btn-secondary dashed-border btn-icon" title="Add Scene">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19">
+                            </line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Dictionary Section (Hidden by Default) -->
+            <section id="dictionary-section" class="dictionary-page hidden">
+                <!-- Dictionary Hero -->
+                <div class="dict-hero">
+                    <h2 class="gradient-text">Cinematic Dictionary</h2>
+                    <div class="section-underline"></div>
+                    <p class="dict-subtitle">Explore professional cinematic terms to enhance your AI video prompts</p>
+                </div>
+
+                <!-- Dictionary Main Card -->
+                <div class="card dict-main-card">
+                    <div class="card-header">
+                        <h3>Cinematic Dictionary</h3>
+                        <div class="dict-header-actions">
+                            <button class="btn btn-primary" id="dict-contribute-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                Add Terms
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dict-split-view">
+                        <!-- Sidebar: Categories -->
+                        <aside class="dict-sidebar">
+                            <h4 class="sidebar-title">Categories</h4>
+                            <ul id="dict-category-list" class="category-list">
+                                <!-- Injected via JS -->
+                            </ul>
+                        </aside>
+
+                        <!-- Main Content: Terms -->
+                        <div class="dict-main-content">
+                            <div class="dict-content-header">
+                                <h3 id="dict-active-category-title">Select a Category</h3>
+                                <div class="dictionary-search-container">
+                                    <svg class="search-icon-inside" xmlns="http://www.w3.org/2000/svg" width="18"
+                                        height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <defs>
+                                            <linearGradient id="search-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#697fff" />
+                                                <stop offset="50%" stop-color="#ff3bf8" />
+                                                <stop offset="100%" stop-color="#ffdd1d" />
+                                            </linearGradient>
+                                        </defs>
+                                        <circle cx="11" cy="11" r="8" stroke="url(#search-grad)"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="url(#search-grad)"></line>
+                                    </svg>
+                                    <input type="text" id="dict-search" placeholder="Search cinematic terms..."
+                                        aria-label="Search cinematic terms">
+                                </div>
+                            </div>
+                            <div id="dict-content" class="dict-terms-list">
+                                <!-- Terms injected here -->
+                                <div class="empty-state">Select a category from the sidebar to view terms</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LLM Integration Section (Hidden by Default) -->
+            <section id="llm-section" class="llm-page hidden">
+                <div class="llm-hero">
+                    <h2 class="gradient-text">AI Integration Hub</h2>
+                    <div class="section-underline"></div>
+                    <p class="llm-subtitle">Select and configure your preferred AI providers to supercharge your prompts
+                    </p>
+                </div>
+
+                <div class="llm-grid">
+                    <!-- Provider Cards -->
+                    <div class="card provider-card" data-provider="openai">
+                        <div class="provider-badge">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="OpenAI"
+                                width="40">
+                        </div>
+                        <div class="provider-setup-status">NOT CONFIGURED</div>
+                        <p>Power your prompts with GPT-4o, the industry standard for reasoning and cinematic depth.</p>
+                        <button class="btn btn-secondary setup-key-btn">Setup API Key</button>
+                    </div>
+
+                    <div class="card provider-card" data-provider="anthropic">
+                        <div class="provider-badge">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg"
+                                alt="Anthropic" width="40">
+                        </div>
+                        <div class="provider-setup-status">NOT CONFIGURED</div>
+                        <p>Claude 3.5 Sonnet offers exceptional creative writing and adherence to complex cinematic
+                            instructions.</p>
+                        <button class="btn btn-secondary setup-key-btn">Setup API Key</button>
+                    </div>
+
+                    <div class="card provider-card" data-provider="gemini">
+                        <div class="provider-badge">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg"
+                                alt="Gemini" width="70">
+                        </div>
+                        <div class="provider-setup-status">NOT CONFIGURED</div>
+                        <p>Leverage Google's Gemini 1.5 Pro for massive context windows and rapid iterations.</p>
+                        <button class="btn btn-secondary setup-key-btn">Setup API Key</button>
+                    </div>
+                </div>
+
+                <!-- Usage Dashboard -->
+                <div class="card usage-dashboard hidden">
+                    <div class="card-header">
+                        <h3>Usage Stats</h3>
+                        <div class="usage-total-tokens">0 Total Tokens</div>
+                    </div>
+                    <div class="usage-stats-grid">
+                        <!-- Stats injected via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section (Hidden by Default) -->
+            <section id="history-section" class="history-page hidden">
+                <div class="llm-hero">
+                    <h2 class="gradient-text">Version History</h2>
+                    <div class="section-underline"></div>
+                    <p class="llm-subtitle">Retrace your creative process and restore previous iterations of your
+                        prompts</p>
+                </div>
+
+                <div class="card history-main-card">
+                    <div class="card-header">
+                        <h3>All Versions</h3>
+                        <div class="history-actions hidden" id="history-section-preview-actions">
+                            <button class="btn btn-primary" id="history-section-restore-btn"
+                                title="Restore for Editing">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="btn-icon-svg">
+                                    <polyline points="1 4 1 10 7 10"></polyline>
+                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                                </svg>
+                                Restore
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dict-split-view">
+                        <!-- Sidebar: History List -->
+                        <aside class="dict-sidebar">
+                            <div class="sidebar-header">
+                                <span>Generation Timeline</span>
+                                <button class="btn-icon-small" id="history-section-clear-btn" title="Clear All History"
+                                    aria-label="Clear All History">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path
+                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div id="history-section-list" class="history-list">
+                                <!-- Injected via JS -->
+                                <div class="empty-state">No history recorded yet.</div>
+                            </div>
+                        </aside>
+
+                        <!-- Main Content: Preview & Diff -->
+                        <div class="dict-main-content">
+                            <div class="code-wrapper">
+                                <div class="code-editor" id="history-section-preview-code">
+                                    <div class="placeholder-content"></div>Select an item from the sidebar...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API Key Setup Modal -->
+            <div id="llm-key-modal" class="modal-overlay hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modal-provider-name">Setup API Key</h3>
+                        <button class="modal-close-btn" id="llm-modal-close-btn">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Provider Selection (Hidden, set automatically) -->
+                        <div class="form-group pos-relative hidden">
+                            <label>Service Provider</label>
+                            <div class="custom-dropdown" id="llm-provider-dropdown">
+                                <div class="dropdown-trigger" id="provider-dropdown-trigger">
+                                    <span class="dropdown-value">Select Provider</span>
+                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-menu hidden" id="provider-dropdown-menu">
+                                    <div class="dropdown-item" data-provider-id="openai">OpenAI</div>
+                                    <div class="dropdown-item" data-provider-id="anthropic">Anthropic</div>
+                                    <div class="dropdown-item" data-provider-id="gemini">Gemini</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group pos-relative">
+                            <label>Default Model</label>
+                            <div class="custom-dropdown" id="llm-model-dropdown">
+                                <div class="dropdown-trigger" id="model-dropdown-trigger">
+                                    <span class="dropdown-value">Select Model</span>
+                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-menu hidden" id="model-dropdown-menu">
+                                    <!-- Models injected via JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Model ID (Hidden by default) -->
+                        <div class="form-group hidden" id="custom-model-group">
+                            <label>Custom Model ID</label>
+                            <input type="text" id="custom-model-id" placeholder="e.g. gpt-4.5-turbo">
+                            <small class="form-help">Enter the exact model string required by the provider.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>API Key</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="provider-api-key" placeholder="Paste your API key here...">
+                                <button type="button" id="toggle-api-key" class="password-toggle-btn"
+                                    title="Toggle Visibility">
+                                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" width="18"
+                                        height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                                        </path>
+                                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="security-privacy-note">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <span>Your data stays yours. Keys are stored locally with AES-256 encryption and are only
+                                used for direct API communication.</span>
+                        </div>
+
+                        <div id="key-validation-status" class="validation-status hidden">
+                            <div class="loader-small"></div>
+                            <span>Validating key...</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="key-modal-cancel">Cancel</button>
+                        <button class="btn btn-primary" id="key-modal-save">Save & Connect</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contribution Modal -->
+            <div id="contribution-modal" class="modal-overlay hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Contribute a Term</h3>
+                        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Your Username</label>
+                            <input type="text" id="contrib-username" placeholder="@yourname">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <div class="custom-dropdown" id="custom-category-dropdown">
+                                <div class="dropdown-trigger" id="dropdown-trigger">
+                                    <span class="dropdown-value">Select a category</span>
+                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-menu hidden" id="dropdown-menu">
+                                    <!-- Categories populated via JS -->
+                                    <div class="dropdown-item new-category-btn" data-action="new">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                        <span>Create New Category</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" id="new-category-name" class="hidden" placeholder="Enter category name">
+                        </div>
+                        <div class="form-group">
+                            <label>Term Name</label>
+                            <input type="text" id="contrib-term-name" placeholder="e.g., Long Take">
+                        </div>
+                        <div class="form-group">
+                            <label>Definition</label>
+                            <textarea id="contrib-definition" placeholder="A clear, concise definition..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Difficulty</label>
+                            <div class="pills-container" id="contrib-difficulty-pills">
+                                <button class="pill" data-value="beginner">Beginner</button>
+                                <button class="pill" data-value="intermediate">Intermediate</button>
+                                <button class="pill" data-value="advanced">Advanced</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Examples (comma-separated)</label>
+                            <input type="text" id="contrib-examples"
+                                placeholder="e.g., Example 1, Example 2, Example 3">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="modal-cancel-btn">Cancel</button>
+                        <button class="btn btn-primary" id="modal-submit-btn">Submit Term</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Modal -->
+            <div id="history-modal" class="modal-overlay hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Version History</h3>
+                        <div class="modal-header-actions">
+                            <div class="history-actions hidden" id="history-preview-actions">
+                                <button class="btn btn-secondary btn-icon" id="history-restore-btn"
+                                    title="Restore This Version">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                        <path d="M3 3v5h5" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <button class="modal-close-btn" id="history-close-btn">&times;</button>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- Sidebar List -->
+                        <div class="history-sidebar">
+                            <div class="sidebar-header">
+                                <span>Timeline</span>
+                                <button class="btn-icon-small" id="history-clear-btn" title="Clear All History">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path
+                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div id="history-list" class="history-list">
+                                <!-- Items injected here -->
+                                <div class="empty-state">No history found.</div>
+                            </div>
+                        </div>
+
+                        <!-- Main Preview Area -->
+                        <div class="history-main">
+                            <div id="history-content-area" class="code-wrapper">
+                                <div class="code-editor" id="history-preview-code">
+                                    <div class="placeholder-content"></div>Select an item from the sidebar...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Global Parameters Section -->
+            <section id="global-params-section" class="card">
+                <div class="card-header">
+                    <h3>Global Parameters</h3>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-icon" id="open-template-gallery"
+                            title="Load Template from Gallery">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </button>
+                        <button class="btn btn-secondary btn-icon" id="save-as-template"
+                            title="Save Configuration as Template">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                <polyline points="7 3 7 8 15 8"></polyline>
+                            </svg>
+                        </button>
+                        <button class="btn btn-secondary btn-icon" id="reset-global-params"
+                            title="Reset all global parameters to defaults">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                <path d="M3 3v5h5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="params-grid">
+                        <!-- Aspect Ratio -->
+                        <div class="global-param-group">
+                            <label class="global-param-label">
+                                Aspect Ratio
+                                <span class="info-icon" title="Sets the aspect ratio for all scenes unless overridden.">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                    </svg>
+                                </span>
+                            </label>
+                            <div class="custom-dropdown" id="global-aspect-ratio-dropdown">
+                                <div class="dropdown-trigger">
+                                    <span class="dropdown-value" id="global-aspect-ratio-display">16:9
+                                        (Widescreen)</span>
+                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-item selected" data-value="16:9">16:9 (Widescreen)</div>
+                                    <div class="dropdown-item" data-value="9:16">9:16 (Vertical)</div>
+                                    <div class="dropdown-item" data-value="1:1">1:1 (Square)</div>
+                                    <div class="dropdown-item" data-value="4:3">4:3 (Standard)</div>
+                                    <div class="dropdown-item" data-value="21:9">21:9 (Ultrawide)</div>
+                                </div>
+                                <input type="hidden" id="global-aspect-ratio" value="16:9">
+                            </div>
+                        </div>
+
+                        <!-- Resolution -->
+                        <div class="global-param-group">
+                            <label class="global-param-label">Resolution</label>
+                            <div class="custom-dropdown" id="global-resolution-dropdown">
+                                <div class="dropdown-trigger">
+                                    <span class="dropdown-value" id="global-resolution-display">1080p (HD)</span>
+                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-item selected" data-value="1080p">1080p (HD)</div>
+                                    <div class="dropdown-item" data-value="4K">4K (UHD)</div>
+                                    <div class="dropdown-item" data-value="720p">720p (HD)</div>
+                                </div>
+                                <input type="hidden" id="global-resolution" value="1080p">
+                            </div>
+                        </div>
+
+                        <!-- Frame Rate -->
+                        <div class="global-param-group">
+                            <label class="global-param-label">Frame Rate</label>
+                            <div class="custom-dropdown" id="global-frame-rate-dropdown">
+                                <div class="dropdown-trigger">
+                                    <span class="dropdown-value" id="global-frame-rate-display">24 fps
+                                        (Cinematic)</span>
+                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-item selected" data-value="24">24 fps (Cinematic)</div>
+                                    <div class="dropdown-item" data-value="30">30 fps (Standard)</div>
+                                    <div class="dropdown-item" data-value="60">60 fps (Smooth)</div>
+                                </div>
+                                <input type="hidden" id="global-frame-rate" value="24">
+                            </div>
+                        </div>
+
+                        <!-- Platform -->
+                        <div class="global-param-group">
+                            <label class="global-param-label">Target Model</label>
+                            <div class="custom-dropdown" id="global-platform-dropdown">
+                                <div class="dropdown-trigger">
+                                    <span class="dropdown-value" id="global-platform-display">Google Veo</span>
+                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-item selected" data-value="veo">Google Veo</div>
+                                    <div class="dropdown-item" data-value="sora">OpenAI Sora</div>
+                                    <div class="dropdown-item" data-value="runway">Runway Gen-3</div>
+                                    <div class="dropdown-item" data-value="luma">Luma Dream Machine</div>
+                                    <div class="dropdown-item" data-value="kling">Kling</div>
+                                </div>
+                                <input type="hidden" id="global-platform" value="veo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Output Section -->
+
+            <section id="output-section" class="card">
+                <div class="card-header">
+                    <h3>Output JSON</h3>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-icon" id="history-trigger-btn" title="View History">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </button>
+                        <button class="btn btn-secondary btn-icon" id="copy-btn" title="Copy to Clipboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        <button class="btn btn-primary btn-icon" id="download-btn" title="Download JSON">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="code-wrapper">
+                    <textarea id="output-json" class="code-editor" readonly aria-label="Generated JSON Output">
+{
+  "platform": "veo",
+  "prompt": "Waiting for input...",
+  "parameters": {
+    "aspect_ratio": "16:9",
+    "resolution": "1080p"
+  }
+}
+                    </textarea>
+                </div>
+            </section>
+
+            <!-- Pricing Section (Hidden by Default) -->
+            <section id="pricing-section" class="pricing-page hidden">
+                <div class="pricing-hero">
+                    <h2 class="gradient-text">Scale Your Cinematic Vision</h2>
+                    <div class="section-underline"></div>
+                    <p class="pricing-subtitle">
+                        From solo creators to professional directors, choose the precision level that fits your
+                        workflow.
+                        Anticipate the next generation of AI video prompting.
+                    </p>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Tier 1: Creator (Free) -->
+                    <div class="pricing-card tier-free">
+                        <div class="pricing-header">
+                            <h3 class="tier-name">
+                                Creator
+                                <span class="pricing-badge">Free</span>
+                            </h3>
+                            <div class="pricing-price">
+                                <span class="price-amount">$0</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                            <p class="price-desc">The essential toolkit for solo creators. Transform vague concepts into
+                                production-ready JSON in seconds.</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> 40 JSON Prompt Generations per month</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Cinematic Dictionary Engine</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> BYOK LLM Integration</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Master Modes + Guardrails</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Global Parameter Suite</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Version History + Diff Viewer</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Basic Negative & Camera Controls</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Basic Lighting Palette</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Basic Prompt Templates Saving</li>
+                        </ul>
+                        <div class="pricing-action">
+                            <button class="btn-pricing coming-soon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Coming Soon
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tier 2: Style & Consistency Pro -->
+                    <div class="pricing-card tier-pro">
+                        <div class="pricing-header">
+                            <h3 class="tier-name">
+                                Director
+                                <span class="pricing-badge">Pro</span>
+                            </h3>
+                            <div class="pricing-price">
+                                <span class="price-amount">$9</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                            <p class="price-desc">Unmatched consistency for professional marketers and directors. Unlock
+                                advanced creative shifting tools.</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> <strong>Everything in Free</strong></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Unlimited Prompt Generations</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Smart Negative Prompt Builder</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Pro Camera & Lighting Suite</li>
+                            <!--<li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Style Shifter Engine</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Character Bible + Ref Upload</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Atomic Scene + Global Locks</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Visual Pre-Visualization</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Consistency Score Preview</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Real-Time Cost Calculator</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Gemini/Claude Expansion</li>-->
+                        </ul>
+                        <div class="pricing-action">
+                            <button class="btn-pricing coming-soon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Coming Soon
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tier 3: Studio Scale (Enterprise) 
+                    <div class="pricing-card tier-enterprise">
+                        <div class="pricing-header">
+                            <h3 class="tier-name">
+                                Studio
+                                <span class="pricing-badge">Team</span>
+                            </h3>
+                            <div class="pricing-price">
+                                <span class="price-amount">$79</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                            <p class="price-desc">The industry standard for agencies. Enterprise-grade security,
+                                collaboration, and temporal logic.</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> <strong>Everything in Pro</strong></li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Brand DNA Lock</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Team Collab + Library</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Advanced Physics Engine</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Prompt Feedback Loop Analyzer</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Multi-Scene Timeline Builder</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Community Marketplace (Rev Share)</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> Audio Cue Integration</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg> One-Click Export Suite</li>
+                        </ul>
+                        <div class="pricing-action">
+                            <button class="btn-pricing coming-soon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                Coming Soon
+                            </button>
+                        </div>
+                    </div> -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="src/assets/icon-192.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+                <p>
+                    Professional AI video prompt generator. <br>Design cinematic shots with code.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="security.html">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="legal/terms.html">Terms of Service</a></li>
+                    <li><a href="legal/cookies.html">Cookie Policy</a></li>
+                    <li><a href="legal/disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="documentation.html">Documentation</a></li>
+                    <li><a href="documentation.html#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="src/js/cryptoUtils.js" defer></script>
+    <script src="src/js/dictionaryService.js" defer></script>
+    <script src="src/js/llmService.js" defer></script>
+    <script src="src/js/historyService.js" defer></script>
+    <script src="src/js/modelProfileService.js" defer></script> <!-- Model Intelligence -->
+    <script src="src/js/globalParamsService.js" defer></script>
+    <script src="src/js/services/templateService.js" defer></script>
+    <script src="src/js/templateUI.js" defer></script>
+    <script src="src/js/pricing.js" defer></script>
+    <script src="src/js/analyticsService.js" defer></script>
+    <script src="src/js/feedbackService.js" defer></script>
+    <script src="src/js/gettingStarted.js" defer></script>
+    <script src="src/js/app.js" defer></script>
+    <script type="module" src="src/js/pwa.js"></script>
+
+
+    <!-- Getting Started Modal -->
+    <div id="getting-started-modal" class="modal hidden">
+        <div class="modal-content getting-started-modal-content">
+            <div class="modal-header">
+                <h2 class="gradient-text">Welcome to JSON Prompt Gen</h2>
+                <button class="modal-close" id="getting-started-close-btn" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="getting-started-step" data-step="1">
+                    <h3>🎬 Create Professional Prompts</h3>
+                    <p>Build structured JSON prompts for AI video platforms like Google Veo, OpenAI Sora, and Runway.
+                        Add scenes, configure camera angles, lighting, and more.</p>
+                    <ul class="gs-step-list">
+                        <li><strong>Add Scenes:</strong> Click "+ Add Scene" to create multiple shots</li>
+                        <li><strong>Camera & Lighting:</strong> Select from cinematic presets</li>
+                        <li><strong>Negative Prompts:</strong> Specify what to avoid in your video</li>
+                    </ul>
+                </div>
+                <div class="getting-started-step hidden" data-step="2">
+                    <h3>✨ AI Enhancement</h3>
+                    <p>Connect your preferred LLM (Claude, GPT-4, Gemini) to enhance your prompts with professional
+                        cinematic language and technical details.</p>
+                    <ul class="gs-step-list">
+                        <li><strong>Setup:</strong> Go to "LLM Integration" to configure your API key</li>
+                        <li><strong>Enhance:</strong> Click the sparkle icon on any scene</li>
+                        <li><strong>Security:</strong> Keys are encrypted locally with AES-256</li>
+                    </ul>
+                </div>
+                <div class="getting-started-step hidden" data-step="3">
+                    <h3>📖 Cinematic Dictionary</h3>
+                    <p>Access a comprehensive library of film terminology, camera techniques, and lighting styles to
+                        elevate your prompts.</p>
+                    <ul class="gs-step-list">
+                        <li><strong>Browse:</strong> Explore categories like Camera Techniques, Lighting Styles</li>
+                        <li><strong>Learn:</strong> Each term includes definitions and examples</li>
+                        <li><strong>Copy:</strong> One-click to add terms to your prompts</li>
+                    </ul>
+                </div>
+                <div class="getting-started-step hidden" data-step="4">
+                    <h3>💾 History & Export</h3>
+                    <p>Your work is automatically saved. Access history, restore previous prompts, and export to
+                        multiple formats.</p>
+                    <ul class="gs-step-list">
+                        <li><strong>Auto-save:</strong> Every generation is saved locally</li>
+                        <li><strong>Export:</strong> Download as JSON for direct API use</li>
+                        <li><strong>Privacy:</strong> Everything stays in your browser</li>
+                    </ul>
+                </div>
+                <div class="getting-started-progress gs-progress-dots">
+                    <span class="progress-dot active" data-dot="1"></span>
+                    <span class="progress-dot" data-dot="2"></span>
+                    <span class="progress-dot" data-dot="3"></span>
+                    <span class="progress-dot" data-dot="4"></span>
+                </div>
+            </div>
+            <div class="modal-footer gs-footer">
+                <button class="btn btn-secondary" id="getting-started-prev">← Previous</button>
+                <label class="gs-dont-show-label">
+                    <input type="checkbox" id="dont-show-again" class="gs-checkbox">
+                    Don't show again
+                </label>
+                <button class="btn btn-primary" id="getting-started-next">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+
+    <div id="feedback-modal" class="modal hidden">
+        <div class="modal-content feedback-modal-content">
+            <div class="modal-header">
+                <h2 class="gradient-text">Send Feedback</h2>
+                <button class="modal-close" id="feedback-close-btn" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Help us improve JSON Prompt Gen. Report bugs or suggest features.</p>
+                <div class="form-group">
+                    <label>Feedback Type</label>
+                    <div class="chip-group" id="feedback-type-chips">
+                        <button class="chip active" data-value="bug">🐛 Bug Report</button>
+                        <button class="chip" data-value="feature">✨ Feature Request</button>
+                        <button class="chip" data-value="other">📝 Other</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-message">Message</label>
+                    <textarea id="feedback-message" class="code-textarea" rows="5"
+                        placeholder="Describe the issue or idea..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="feedback-cancel-btn">Cancel</button>
+                <button class="btn btn-primary" id="feedback-submit-btn">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+    <div id="toast-container" class="toast-container"></div>
+    <!-- Global SVG Assets -->
+    <svg class="svg-asset-container" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="enhanceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" class="enhance-gradient-start" />
+                <stop offset="100%" class="enhance-gradient-end" />
+            </linearGradient>
+            <linearGradient id="sidebarIconGradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"
+                gradientTransform="rotate(345, 12, 12)">
+                <stop offset="0%" stop-color="#697fef" />
+                <stop offset="50%" stop-color="#ff3bf8" />
+                <stop offset="100%" stop-color="#ffdd1d" />
+            </linearGradient>
+        </defs>
+    </svg>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+/* ===================================
+   Output JSON Section Styles
+   =================================== */
+
+/* Output Section Container */
+#output-section {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 24px;
+}
+
+#output-section .card-header {
+    margin-bottom: 16px;
+    /* Reduced from default 40px to match tighter spacing */
+}
+
+#output-section .card-header,
+#output-section .code-wrapper,
+#output-section .code-editor {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#output-section .code-wrapper {
+    margin-top: 0;
+    /* Remove extra margin since header already has margin-bottom */
+}
+
+/* Output Section Action Buttons */
+#output-section .card-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Output JSON Textarea - Optimized Size */
+#output-json {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-code) !important;
+
+    /* Optimized dimensions */
+    height: 280px;
+    /* Optimal height for JSON preview */
+    min-height: 200px;
+    max-height: 450px;
+    width: 100%;
+
+    /* Styling */
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 20px;
+
+    /* Behavior */
+    resize: vertical;
+    overflow-y: auto;
+
+    /* Transitions */
+    transition: border-color 0.2s ease;
+}
+
+#output-json:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+#output-json:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* ===================================
+   Generic Code Editor Styles
+   =================================== */
+
+/* Code Wrapper Container */
+.code-wrapper {
+    font-family: var(--font-mono);
+    color: var(--text-code);
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+/* Base Code Editor (for scene descriptions, etc.) */
+.code-editor {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-code) !important;
+
+    /* Default dimensions */
+    height: 200px;
+    width: 100%;
+
+    /* Styling */
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 20px;
+
+    /* Behavior */
+    resize: vertical;
+
+    /* Transitions */
+    transition: border-color 0.2s ease;
+}
+
+.code-editor:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.code-editor:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Syntax Highlighting Colors (for future use) */
+.code-editor .string {
+    color: #98c379;
+}
+
+.code-editor .number {
+    color: #d19a66;
+}
+
+.code-editor .boolean {
+    color: #56b6c2;
+}
+
+.code-editor .null {
+    color: #c678dd;
+}
+
+.code-editor .key {
+    color: #e06c75;
+}
