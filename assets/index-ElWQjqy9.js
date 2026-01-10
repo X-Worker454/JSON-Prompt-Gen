@@ -47,7 +47,7 @@ ${r}`}]}],generationConfig:{temperature:c.temperature||.7,maxOutputTokens:c.maxT
             <div id="template-save-modal" class="template-modal-overlay">
                 <div class="template-modal save-dialog">
                     <div class="template-modal-header">
-                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Save Template</h3>
+                        <h3 class="gradient-text">Save Template</h3>
                         <button class="close-modal-btn" data-target="template-save-modal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
                     </div>
                     <form id="template-save-form">
@@ -77,7 +77,7 @@ ${r}`}]}],generationConfig:{temperature:c.temperature||.7,maxOutputTokens:c.maxT
             <div id="template-gallery-modal" class="template-modal-overlay">
                 <div class="template-modal">
                     <div class="template-modal-header">
-                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> Template Gallery</h3>
+                        <h3 class="gradient-text">Template Gallery</h3>
                         <button class="close-modal-btn" data-target="template-gallery-modal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
                     </div>
                     <div class="template-modal-body">
