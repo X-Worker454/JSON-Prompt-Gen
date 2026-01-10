@@ -19,13 +19,26 @@ window.historyService = new HistoryService();
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Core UI-dependent Services
-    new GettingStarted();
-    new PricingManager();
+    try {
+        new GettingStarted();
+    } catch (e) {
+        console.error('GettingStarted Init Error:', e);
+    }
+
+    try {
+        new PricingManager();
+    } catch (e) {
+        console.error('PricingManager Init Error:', e);
+    }
 
     // Initialize Template System
-    const templateService = new TemplateService();
-    const templateUI = new TemplateUI(templateService);
-    window.templateUI = templateUI; // Keep global for debugging/legacy access if needed
+    try {
+        const templateService = new TemplateService();
+        const templateUI = new TemplateUI(templateService);
+        window.templateUI = templateUI;
+    } catch (e) {
+        console.error('Template System Init Error:', e);
+    }
 
     const scenesContainer = document.getElementById('scenes-container');
     const addSceneBtn = document.getElementById('add-scene-btn');
