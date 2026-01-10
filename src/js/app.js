@@ -706,13 +706,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function openDictSidebar() {
         dictSidebar?.classList.add('active');
         dictSidebarOverlay?.classList.add('active');
-        document.body.style.overflow = 'hidden';
     }
 
     function closeDictSidebar() {
         dictSidebar?.classList.remove('active');
         dictSidebarOverlay?.classList.remove('active');
-        document.body.style.overflow = '';
     }
 
     if (dictHamburgerBtn) dictHamburgerBtn.addEventListener('click', openDictSidebar);
