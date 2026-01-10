@@ -69,10 +69,7 @@
 .template-modal-header h3 {
     margin: 0;
     font-size: 1.25rem;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-weight: 700;
 }
 
 .close-modal-btn {
@@ -86,8 +83,10 @@
 }
 
 .close-modal-btn:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.1);
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.3);
+    transform: rotate(90deg);
 }
 
 /* Modal Body */
