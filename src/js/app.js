@@ -698,6 +698,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const dictSearchInput = document.getElementById('dict-search');
     const dictActiveCategoryTitle = document.getElementById('dict-active-category-title');
 
+    const dictSidebar = document.getElementById('dict-sidebar');
+    const dictSidebarOverlay = document.getElementById('dict-sidebar-overlay');
+    const dictHamburgerBtn = document.getElementById('dict-hamburger-btn');
+    const dictSidebarClose = document.getElementById('dict-sidebar-close');
+
+    function openDictSidebar() {
+        dictSidebar?.classList.add('active');
+        dictSidebarOverlay?.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDictSidebar() {
+        dictSidebar?.classList.remove('active');
+        dictSidebarOverlay?.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (dictHamburgerBtn) dictHamburgerBtn.addEventListener('click', openDictSidebar);
+    if (dictSidebarClose) dictSidebarClose.addEventListener('click', closeDictSidebar);
+    if (dictSidebarOverlay) dictSidebarOverlay.addEventListener('click', closeDictSidebar);
+
     /* ============================
         LLM Integration Logic
        ============================ */
@@ -878,6 +899,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeCategoryId = cat.id;
                 dictActiveCategoryTitle.textContent = cat.name;
                 renderTermsByCategory(cat.id);
+                closeDictSidebar();
             });
             dictCategoryList.appendChild(li);
         });

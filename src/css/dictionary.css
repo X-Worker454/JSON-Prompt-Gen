@@ -95,18 +95,93 @@
 }
 
 /* Sidebar */
+/* Sidebar */
+/* Sidebar */
 .dict-sidebar {
-    width: 240px;
-    flex-shrink: 0;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: var(--radius-sm);
-    padding: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 280px;
+    height: 100vh;
+    background: rgba(18, 18, 24, 0.98);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 3000;
+    padding: 0;
+    transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
 }
 
-.dict-sidebar:hover {
-    border-color: rgba(255, 255, 255, 0.192);
-    background-color: rgba(255, 255, 255, 0.015);
+.dict-sidebar.active {
+    left: 0;
+}
+
+#dict-sidebar-overlay {
+    z-index: 2999;
+}
+
+.dict-sidebar .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dict-sidebar .sidebar-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dict-sidebar .sidebar-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.dict-sidebar .sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.dict-sidebar .category-list {
+    padding: 15px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Category List Items Enahnced */
+.category-list li {
+    padding: 12px 16px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dict-main-content {
+    flex: 1;
+    min-width: 0;
+    padding-left: 0;
+    /* No padding needed as sidebar is fixed */
 }
 
 .sidebar-title {
