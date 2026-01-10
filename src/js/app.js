@@ -169,7 +169,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Initialize Global Parameters Service
-    const globalParams = new GlobalParamsService();
+    let globalParams;
+    try {
+        globalParams = new GlobalParamsService();
+    } catch (e) {
+        console.error('GlobalParamsService Init Error:', e);
+        // Fallback mock to prevent crashes in dependent code
+        globalParams = {
+            getParams: () => ({ platform_preset: 'veo', aspect_ratio: '16:9', resolution: '1080p', frame_rate: '24' }),
+            updateParam: () => false,
+            resetDefaults: () => ({}),
+            modelService: { validateContent: () => ({ safe: true }), validateParams: () => ({ valid: true }) }
+        };
+    }
 
     // Global Params Dropdown Configuration
     const globalDropdowns = [
