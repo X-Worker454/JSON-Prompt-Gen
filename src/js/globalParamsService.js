@@ -1,6 +1,6 @@
 import { ModelProfileService } from './modelProfileService.js';
 
-/**
+/*
  * GlobalParamsService.js
  * Manages project-wide settings that are inherited by all scenes.
  * Handles persistence, updates, and resetting to defaults.

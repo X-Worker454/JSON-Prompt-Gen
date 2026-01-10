@@ -1,4 +1,4 @@
-/**
+/*
  * ModelProfileService.js
  * Central database of capabilities and constraints for AI video generation models.
  * Enforces guardrails and provides platform-specific intelligence.

@@ -1,4 +1,4 @@
-/**
+/*
  * Crypto Utilities for Secure Key Management
  * Uses Web Crypto API (AES-GCM) for client-side encryption
  */

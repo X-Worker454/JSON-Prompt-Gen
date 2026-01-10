@@ -142,10 +142,22 @@
     color: var(--text-primary);
 }
 
-/* Global ParametersReset Button */
 #reset-global-params svg {
     width: 18px;
     height: 18px;
+}
+
+#open-template-gallery {
+    background: var(--accent-gradient);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(234, 2, 226, 0.25);
+}
+
+#open-template-gallery:hover {
+    filter: brightness(1.15) saturate(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(234, 2, 226, 0.4);
 }
 
 .reset-defaults-btn:hover,

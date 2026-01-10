@@ -1,4 +1,4 @@
-/**
+/*
  * TemplateService - Manages IndexedDB storage for Prompt Templates
  * Handles CRUD operations, schema management, and data persistence.
  */

@@ -1,4 +1,4 @@
-/**
+/*
  * LLM Service - BYOK Integration for OpenAI, Anthropic, and Gemini
  * Local-first PWA implementation with secure key management
  */

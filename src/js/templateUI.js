@@ -1,4 +1,4 @@
-/**
+/*
  * TemplateUI - Manages the user interface for Prompt Templates
  * Handles Modals, Rendering, and User Interactions.
  */
