@@ -1,4 +1,4 @@
-class FeedbackService {
+export class FeedbackService {
     constructor(analyticsService) {
         this.analytics = analyticsService;
     }

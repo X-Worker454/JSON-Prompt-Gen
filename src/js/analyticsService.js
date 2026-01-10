@@ -1,4 +1,4 @@
-class AnalyticsService {
+export class AnalyticsService {
     constructor() {
         this.events = [];
         this.sessionId = this.generateSessionId();

@@ -3,7 +3,7 @@
  * Local-first PWA implementation with secure key management
  */
 
-class LLMService {
+export class LLMService {
     constructor() {
         this.STORAGE_KEY = 'llm_vault';
         this.providers = {
@@ -468,5 +468,4 @@ Guidelines:
     }
 }
 
-// Export for module usage or attach to window
-window.LLMService = LLMService;
+

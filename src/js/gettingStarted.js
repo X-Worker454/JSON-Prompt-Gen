@@ -1,109 +1,95 @@
-// Getting Started Modal Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const gettingStartedModal = document.getElementById('getting-started-modal');
-    const gettingStartedCloseBtn = document.getElementById('getting-started-close-btn');
-    const gettingStartedNextBtn = document.getElementById('getting-started-next');
-    const gettingStartedPrevBtn = document.getElementById('getting-started-prev');
-    const dontShowAgainCheckbox = document.getElementById('dont-show-again');
+export class GettingStarted {
+    constructor() {
+        this.currentStep = 1;
+        this.totalSteps = 4;
+        this.modal = document.getElementById('getting-started-modal');
+        this.closeBtn = document.getElementById('getting-started-close-btn');
+        this.nextBtn = document.getElementById('getting-started-next');
+        this.prevBtn = document.getElementById('getting-started-prev');
+        this.checkbox = document.getElementById('dont-show-again');
 
-    let currentStep = 1;
-    const totalSteps = 4;
-
-    // Check if user has seen the modal before
-    const hasSeenGettingStarted = localStorage.getItem('hasSeenGettingStarted');
-
-    if (!hasSeenGettingStarted) {
-        // Show modal after a brief delay for first-time users
-        setTimeout(() => {
-            showGettingStartedModal();
-        }, 1000);
+        if (this.modal) {
+            this.init();
+        }
     }
 
-    function showGettingStartedModal() {
-        gettingStartedModal.classList.remove('hidden');
-        currentStep = 1;
-        updateStep();
+    init() {
+        // Check if user has seen the modal before
+        const hasSeen = localStorage.getItem('hasSeenGettingStarted');
+        if (!hasSeen) {
+            setTimeout(() => this.show(), 1000);
+        }
+
+        this.bindEvents();
+
+        // Expose global for external triggers (Help links)
+        window.showGettingStarted = () => this.show();
     }
 
-    function hideGettingStartedModal() {
-        gettingStartedModal.classList.add('hidden');
-        if (dontShowAgainCheckbox.checked) {
+    show() {
+        this.modal.classList.remove('hidden');
+        this.currentStep = 1;
+        this.updateStep();
+    }
+
+    hide() {
+        this.modal.classList.add('hidden');
+        if (this.checkbox.checked) {
             localStorage.setItem('hasSeenGettingStarted', 'true');
         }
     }
 
-    function updateStep() {
+    updateStep() {
         // Hide all steps
         document.querySelectorAll('.getting-started-step').forEach(step => {
             step.classList.add('hidden');
         });
 
         // Show current step
-        const activeStep = document.querySelector(`.getting-started-step[data-step="${currentStep}"]`);
-        if (activeStep) {
-            activeStep.classList.remove('hidden');
-        }
+        const activeStep = document.querySelector(`.getting-started-step[data-step="${this.currentStep}"]`);
+        if (activeStep) activeStep.classList.remove('hidden');
 
         // Update progress dots
         document.querySelectorAll('.progress-dot').forEach(dot => {
             const dotStep = parseInt(dot.dataset.dot);
-            if (dotStep === currentStep) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
+            dot.classList.toggle('active', dotStep === this.currentStep);
         });
 
-        // Update button visibility
-        if (currentStep === 1) {
-            gettingStartedPrevBtn.style.display = 'none';
-        } else {
-            gettingStartedPrevBtn.style.display = 'inline-flex';
-        }
+        // Update buttons
+        this.prevBtn.style.display = this.currentStep === 1 ? 'none' : 'inline-flex';
+        this.nextBtn.textContent = this.currentStep === this.totalSteps ? 'Get Started' : 'Next';
+    }
 
-        if (currentStep === totalSteps) {
-            gettingStartedNextBtn.textContent = 'Get Started';
+    next() {
+        if (this.currentStep < this.totalSteps) {
+            this.currentStep++;
+            this.updateStep();
         } else {
-            gettingStartedNextBtn.textContent = 'Next';
+            this.hide();
         }
     }
 
-    function nextStep() {
-        if (currentStep < totalSteps) {
-            currentStep++;
-            updateStep();
-        } else {
-            hideGettingStartedModal();
+    prev() {
+        if (this.currentStep > 1) {
+            this.currentStep--;
+            this.updateStep();
         }
     }
 
-    function prevStep() {
-        if (currentStep > 1) {
-            currentStep--;
-            updateStep();
-        }
-    }
+    bindEvents() {
+        this.closeBtn.addEventListener('click', () => this.hide());
+        this.nextBtn.addEventListener('click', () => this.next());
+        this.prevBtn.addEventListener('click', () => this.prev());
 
-    // Event Listeners
-    gettingStartedCloseBtn.addEventListener('click', hideGettingStartedModal);
-    gettingStartedNextBtn.addEventListener('click', nextStep);
-    gettingStartedPrevBtn.addEventListener('click', prevStep);
-
-    // Click on progress dots to jump to step
-    document.querySelectorAll('.progress-dot').forEach(dot => {
-        dot.addEventListener('click', () => {
-            currentStep = parseInt(dot.dataset.dot);
-            updateStep();
+        document.querySelectorAll('.progress-dot').forEach(dot => {
+            dot.addEventListener('click', () => {
+                this.currentStep = parseInt(dot.dataset.dot);
+                this.updateStep();
+            });
         });
-    });
 
-    // Close modal when clicking outside
-    gettingStartedModal.addEventListener('click', (e) => {
-        if (e.target === gettingStartedModal) {
-            hideGettingStartedModal();
-        }
-    });
-
-    // Expose function globally so it can be triggered from help/documentation links
-    window.showGettingStarted = showGettingStartedModal;
-});
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) this.hide();
+        });
+    }
+}

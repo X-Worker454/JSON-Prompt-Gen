@@ -1,4 +1,4 @@
-class DictionaryService {
+export class DictionaryService {
     constructor() {
         this.data = null;
         this.categories = [];
@@ -272,5 +272,4 @@ class DictionaryService {
     }
 }
 
-// Export for module usage or attach to window
-window.DictionaryService = DictionaryService;
+

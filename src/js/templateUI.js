@@ -2,7 +2,7 @@
  * TemplateUI - Manages the user interface for Prompt Templates
  * Handles Modals, Rendering, and User Interactions.
  */
-class TemplateUI {
+export class TemplateUI {
     constructor() {
         this.services = window.templateService;
         this.currentPromptData = null; // Data to be saved
@@ -257,5 +257,4 @@ class TemplateUI {
     }
 }
 
-// Initialize Global Instance
-window.templateUI = new TemplateUI();
+

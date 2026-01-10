@@ -1,12 +1,14 @@
+import { ModelProfileService } from './modelProfileService.js';
+
 /**
  * GlobalParamsService.js
  * Manages project-wide settings that are inherited by all scenes.
  * Handles persistence, updates, and resetting to defaults.
  */
-class GlobalParamsService {
+export class GlobalParamsService {
     constructor() {
         this.STORAGE_KEY = 'json_prompt_gen_global_params';
-        this.modelService = new window.ModelProfileService();
+        this.modelService = new ModelProfileService();
 
         // Default Configuration
         this.defaults = {
@@ -94,5 +96,4 @@ class GlobalParamsService {
     }
 }
 
-// Make it available globally
-window.GlobalParamsService = GlobalParamsService;
+

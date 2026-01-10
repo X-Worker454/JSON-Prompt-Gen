@@ -1,4 +1,4 @@
-class HistoryService {
+export class HistoryService {
     constructor() {
         this.STORAGE_KEY = 'json_prompt_gen_history';
         this.MAX_ITEMS = 50; // Cap to prevent localStorage bloat

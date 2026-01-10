@@ -3,7 +3,7 @@
  * Uses Web Crypto API (AES-GCM) for client-side encryption
  */
 
-const CryptoUtils = {
+export const CryptoUtils = {
     // Configuration
     ALGORITHM: 'AES-GCM',
     KEY_LENGTH: 256,
@@ -141,5 +141,4 @@ const CryptoUtils = {
     }
 };
 
-// Export for module usage or attach to window
-window.CryptoUtils = CryptoUtils;
+

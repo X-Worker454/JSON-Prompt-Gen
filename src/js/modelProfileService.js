@@ -3,7 +3,7 @@
  * Central database of capabilities and constraints for AI video generation models.
  * Enforces guardrails and provides platform-specific intelligence.
  */
-class ModelProfileService {
+export class ModelProfileService {
     constructor() {
         this.profiles = {
             veo: {
@@ -190,5 +190,4 @@ class ModelProfileService {
     }
 }
 
-// Global Export
-window.ModelProfileService = ModelProfileService;
+
