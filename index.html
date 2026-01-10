@@ -47,9 +47,8 @@
             // In production: Sentry.captureException(error);
         };
     </script>
-  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/index-mIwom5bW.js"></script>
   <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/index-8_yqWS19.css">
-<link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"></head>
+<link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
     <!-- Sidebar Menu -->
@@ -1299,100 +1298,80 @@
         </div>
     </footer>
 
-    <!-- Core Scripts -->
-    <script src="src/js/cryptoUtils.js" defer></script>
-    <script src="src/js/dictionaryService.js" defer></script>
-    <script src="src/js/llmService.js" defer></script>
-    <script src="src/js/historyService.js" defer></script>
-    <script src="src/js/modelProfileService.js" defer></script> <!-- Model Intelligence -->
-    <script src="src/js/globalParamsService.js" defer></script>
-    <script src="src/js/services/templateService.js" defer></script>
-    <script src="src/js/templateUI.js" defer></script>
-    <script src="src/js/pricing.js" defer></script>
-    <script src="src/js/analyticsService.js" defer></script>
-    <script src="src/js/feedbackService.js" defer></script>
-    <script src="src/js/gettingStarted.js" defer></script>
-    <script src="src/js/app.js" defer></script>
-
-
-    <!-- Getting Started Modal -->
-    <div id="getting-started-modal" class="modal hidden">
-        <div class="modal-content getting-started-modal-content">
-            <div class="modal-header">
-                <h2 class="gradient-text">Welcome to JSON Prompt Gen</h2>
-                <button class="gs-close-btn" id="getting-started-close-btn" aria-label="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="getting-started-step" data-step="1">
-                    <h3>Create Professional Prompts</h3>
-                    <p>Build structured JSON prompts for AI video platforms like Veo, Sora, Runway, Kling, Luma.
-                        Add scenes, configure camera angles, lighting, and more.</p>
-                    <ul class="gs-step-list">
-                        <li><strong>Add Scenes:</strong> Click "+ Add Scene" to create multiple shots</li>
-                        <li><strong>Camera & Lighting:</strong> Select from cinematic presets</li>
-                        <li><strong>Negative Prompts:</strong> Specify what to avoid in your video</li>
-                    </ul>
-                </div>
-                <div class="getting-started-step hidden" data-step="2">
-                    <h3>AI Enhancement</h3>
-                    <p>Connect your preferred LLM (Claude, GPT-4, Gemini) to enhance your prompts with professional
-                        cinematic language and technical details.</p>
-                    <ul class="gs-step-list">
-                        <li><strong>Setup:</strong> Go to "LLM Integration" to configure your API key</li>
-                        <li><strong>Enhance:</strong> Click the sparkle icon on any scene</li>
-                        <li><strong>Security:</strong> Keys are encrypted locally with AES-256</li>
-                    </ul>
-                </div>
-                <div class="getting-started-step hidden" data-step="3">
-                    <h3>Cinematic Dictionary</h3>
-                    <p>Access a comprehensive library of film terminology, camera techniques, and lighting styles to
-                        elevate your prompts.</p>
-                    <ul class="gs-step-list">
-                        <li><strong>Browse:</strong> Explore categories like Camera Techniques, Lighting Styles</li>
-                        <li><strong>Learn:</strong> Each term includes definitions and examples</li>
-                        <li><strong>Copy:</strong> One-click to add terms to your prompts</li>
-                    </ul>
-                </div>
-                <div class="getting-started-step hidden" data-step="4">
-                    <h3>History & Export</h3>
-                    <p>Your work is automatically saved. Access history, restore previous prompts, and export to
-                        multiple formats.</p>
-                    <ul class="gs-step-list">
-                        <li><strong>Auto-save:</strong> Every generation is saved locally</li>
-                        <li><strong>Export:</strong> Download as JSON for direct API use</li>
-                        <li><strong>Privacy:</strong> Everything stays in your browser</li>
-                    </ul>
-                </div>
-                <div class="getting-started-progress gs-progress-dots">
-                    <span class="progress-dot active" data-dot="1"></span>
-                    <span class="progress-dot" data-dot="2"></span>
-                    <span class="progress-dot" data-dot="3"></span>
-                    <span class="progress-dot" data-dot="4"></span>
-                </div>
-            </div>
-            <div class="modal-footer gs-footer">
-                <button class="btn btn-secondary" id="getting-started-prev">Previous</button>
-                <label class="gs-dont-show-label">
-                    <div class="custom-checkbox-container">
-                        <input type="checkbox" id="dont-show-again" class="gs-checkbox">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"
-                                stroke-linecap="round" stroke-linejoin="round" class="check-icon">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                    </div>
-                    Don't show again
-                </label>
-                <button class="btn btn-primary" id="getting-started-next">Next</button>
-            </div>
+    <h2 class="gradient-text">Welcome to JSON Prompt Gen</h2>
+    <button class="gs-close-btn" id="getting-started-close-btn" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="getting-started-step" data-step="1">
+            <h3>Create Professional Prompts</h3>
+            <p>Build structured JSON prompts for AI video platforms like Veo, Sora, Runway, Kling, Luma.
+                Add scenes, configure camera angles, lighting, and more.</p>
+            <ul class="gs-step-list">
+                <li><strong>Add Scenes:</strong> Click "+ Add Scene" to create multiple shots</li>
+                <li><strong>Camera & Lighting:</strong> Select from cinematic presets</li>
+                <li><strong>Negative Prompts:</strong> Specify what to avoid in your video</li>
+            </ul>
         </div>
+        <div class="getting-started-step hidden" data-step="2">
+            <h3>AI Enhancement</h3>
+            <p>Connect your preferred LLM (Claude, GPT-4, Gemini) to enhance your prompts with professional
+                cinematic language and technical details.</p>
+            <ul class="gs-step-list">
+                <li><strong>Setup:</strong> Go to "LLM Integration" to configure your API key</li>
+                <li><strong>Enhance:</strong> Click the sparkle icon on any scene</li>
+                <li><strong>Security:</strong> Keys are encrypted locally with AES-256</li>
+            </ul>
+        </div>
+        <div class="getting-started-step hidden" data-step="3">
+            <h3>Cinematic Dictionary</h3>
+            <p>Access a comprehensive library of film terminology, camera techniques, and lighting styles to
+                elevate your prompts.</p>
+            <ul class="gs-step-list">
+                <li><strong>Browse:</strong> Explore categories like Camera Techniques, Lighting Styles</li>
+                <li><strong>Learn:</strong> Each term includes definitions and examples</li>
+                <li><strong>Copy:</strong> One-click to add terms to your prompts</li>
+            </ul>
+        </div>
+        <div class="getting-started-step hidden" data-step="4">
+            <h3>History & Export</h3>
+            <p>Your work is automatically saved. Access history, restore previous prompts, and export to
+                multiple formats.</p>
+            <ul class="gs-step-list">
+                <li><strong>Auto-save:</strong> Every generation is saved locally</li>
+                <li><strong>Export:</strong> Download as JSON for direct API use</li>
+                <li><strong>Privacy:</strong> Everything stays in your browser</li>
+            </ul>
+        </div>
+        <div class="getting-started-progress gs-progress-dots">
+            <span class="progress-dot active" data-dot="1"></span>
+            <span class="progress-dot" data-dot="2"></span>
+            <span class="progress-dot" data-dot="3"></span>
+            <span class="progress-dot" data-dot="4"></span>
+        </div>
+    </div>
+    <div class="modal-footer gs-footer">
+        <button class="btn btn-secondary" id="getting-started-prev">Previous</button>
+        <label class="gs-dont-show-label">
+            <div class="custom-checkbox-container">
+                <input type="checkbox" id="dont-show-again" class="gs-checkbox">
+                <span class="custom-checkbox">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
+                        stroke-linejoin="round" class="check-icon">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </span>
+            </div>
+            Don't show again
+        </label>
+        <button class="btn btn-primary" id="getting-started-next">Next</button>
+    </div>
+    </div>
     </div>
 
     <!-- Feedback Modal -->

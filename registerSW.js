@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/JSON-Prompt-Gen/sw.js', { scope: '/JSON-Prompt-Gen/' })})}
