@@ -96,7 +96,7 @@
     min-height: 500px;
 }
 
-/* Sidebar */
+/* Cinematic Dictionary Sidebar */
 .dict-sidebar {
     position: absolute;
     top: 0;
@@ -115,7 +115,7 @@
     flex-direction: column;
     visibility: hidden;
     pointer-events: none;
-    border-radius: var(--radius-md) 0 0 var(--radius-md);
+    border-radius: 12px;
 }
 
 .dict-sidebar.active {
@@ -169,8 +169,8 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-secondary);
     cursor: pointer;
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,7 +228,6 @@
     align-items: center;
     margin-bottom: 24px;
     padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .dict-content-header h3 {
