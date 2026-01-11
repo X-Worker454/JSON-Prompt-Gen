@@ -368,7 +368,7 @@
 
 #history-modal .modal-body {
     flex: 1;
-    padding: 0;
+    padding: 12px 0 12px 0;
     display: flex;
     overflow: hidden;
 }
@@ -517,7 +517,7 @@
 
 .history-section-content .code-editor {
     min-height: 450px;
-    padding: 15px;
+    padding: 20px;
 }
 
 /* History Section Hamburger Button */
@@ -581,6 +581,7 @@
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
+    padding: 5px 0 5px 0 !important;
 }
 
 .history-section-sidebar.active {
