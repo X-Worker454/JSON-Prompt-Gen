@@ -209,6 +209,18 @@ h3 {
     font-weight: 600;
 }
 
+.header-left-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sidebar-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .card-actions {
     display: flex;
     align-items: center;

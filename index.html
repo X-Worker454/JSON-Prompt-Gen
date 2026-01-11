@@ -18,13 +18,13 @@
     <!-- Styles -->
     <link rel="stylesheet" href="src/css/theme.css">
     <link rel="stylesheet" href="src/css/main.css">
-    <link rel="stylesheet" href="src/css/history.css">
     <link rel="stylesheet" href="src/css/output.css">
     <link rel="stylesheet" href="src/css/global-params.css">
     <link rel="stylesheet" href="src/css/dictionary.css">
     <link rel="stylesheet" href="src/css/integration.css">
     <link rel="stylesheet" href="src/css/pricing.css">
     <link rel="stylesheet" href="src/css/templates.css">
+    <link rel="stylesheet" href="src/css/history.css?v=20260112">
 
     <!-- PWA (Managed by vite-plugin-pwa) -->
     <link rel="icon" type="image/png" href="src/assets/favicon.png">
@@ -435,7 +435,7 @@
                 <!-- Dictionary Main Card -->
                 <div class="card dict-main-card">
                     <div class="card-header">
-                        <div class="header-left-group" style="display: flex; align-items: center; gap: 15px;">
+                        <div class="header-left-group">
                             <button class="hamburger-btn" id="dict-hamburger-btn" aria-label="Open categories">
                                 <span class="hamburger-line"></span>
                                 <span class="hamburger-line"></span>
@@ -575,7 +575,14 @@
 
                 <div class="card history-main-card">
                     <div class="card-header">
-                        <h3>All Versions</h3>
+                        <div class="header-left-group">
+                            <button class="hamburger-btn" id="history-section-hamburger-btn" aria-label="Open timeline">
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                            </button>
+                            <h3>All Versions</h3>
+                        </div>
                         <div class="history-actions hidden" id="history-section-preview-actions">
                             <button class="btn btn-primary" id="history-section-restore-btn"
                                 title="Restore for Editing">
@@ -590,11 +597,23 @@
                         </div>
                     </div>
 
-                    <div class="dict-split-view">
-                        <!-- Sidebar: History List -->
-                        <aside class="dict-sidebar">
-                            <div class="sidebar-header">
-                                <span>Generation Timeline</span>
+                    <!-- Main Content: Preview & Diff -->
+                    <div class="history-section-content">
+                        <div class="code-wrapper">
+                            <div class="code-editor" id="history-section-preview-code">
+                                <div class="placeholder-content"></div>Select an item from the sidebar...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- History Section Sidebar Overlay -->
+                    <div id="history-section-sidebar-overlay" class="sidebar-overlay"></div>
+
+                    <!-- History Section Sidebar -->
+                    <aside class="history-section-sidebar" id="history-section-sidebar">
+                        <div class="sidebar-header">
+                            <span class="sidebar-title gradient-text">Generation Timeline</span>
+                            <div class="sidebar-header-actions">
                                 <button class="btn-icon-small" id="history-section-clear-btn" title="Clear All History"
                                     aria-label="Clear All History">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
@@ -606,22 +625,22 @@
                                         </path>
                                     </svg>
                                 </button>
-                            </div>
-                            <div id="history-section-list" class="history-list">
-                                <!-- Injected via JS -->
-                                <div class="empty-state">No history recorded yet.</div>
-                            </div>
-                        </aside>
-
-                        <!-- Main Content: Preview & Diff -->
-                        <div class="dict-main-content">
-                            <div class="code-wrapper">
-                                <div class="code-editor" id="history-section-preview-code">
-                                    <div class="placeholder-content"></div>Select an item from the sidebar...
-                                </div>
+                                <button class="sidebar-close" id="history-section-sidebar-close"
+                                    aria-label="Close timeline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
-                    </div>
+                        <div id="history-section-list" class="history-list">
+                            <!-- Injected via JS -->
+                            <div class="empty-state">No history recorded yet.</div>
+                        </div>
+                    </aside>
                 </div>
             </section>
 
@@ -795,7 +814,14 @@
             <div id="history-modal" class="modal-overlay hidden">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3>Version History</h3>
+                        <div class="header-left-group">
+                            <button class="hamburger-btn" id="history-hamburger-btn" aria-label="Open timeline">
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                            </button>
+                            <h3>Version History</h3>
+                        </div>
                         <div class="modal-header-actions">
                             <div class="history-actions hidden" id="history-preview-actions">
                                 <button class="btn btn-secondary btn-icon" id="history-restore-btn"
@@ -820,11 +846,24 @@
                         </div>
                     </div>
                     <div class="modal-body">
+                        <!-- Main Preview Area -->
+                        <div class="history-main">
+                            <div id="history-content-area" class="code-wrapper">
+                                <div class="code-editor" id="history-preview-code">
+                                    <div class="placeholder-content"></div>Select an item from the sidebar...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                        <!-- Sidebar List -->
-                        <div class="history-sidebar">
-                            <div class="sidebar-header">
-                                <span>Timeline</span>
+                    <!-- History Sidebar Overlay (covers entire modal) -->
+                    <div id="history-sidebar-overlay" class="sidebar-overlay"></div>
+
+                    <!-- Sidebar List (spans entire modal height) -->
+                    <div class="history-sidebar" id="history-sidebar">
+                        <div class="sidebar-header">
+                            <span class="sidebar-title gradient-text">Timeline</span>
+                            <div class="sidebar-header-actions">
                                 <button class="btn-icon-small" id="history-clear-btn" title="Clear All History">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -835,20 +874,19 @@
                                         </path>
                                     </svg>
                                 </button>
-                            </div>
-                            <div id="history-list" class="history-list">
-                                <!-- Items injected here -->
-                                <div class="empty-state">No history found.</div>
+                                <button class="sidebar-close" id="history-sidebar-close" aria-label="Close timeline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
-
-                        <!-- Main Preview Area -->
-                        <div class="history-main">
-                            <div id="history-content-area" class="code-wrapper">
-                                <div class="code-editor" id="history-preview-code">
-                                    <div class="placeholder-content"></div>Select an item from the sidebar...
-                                </div>
-                            </div>
+                        <div id="history-list" class="history-list">
+                            <!-- Items injected here -->
+                            <div class="empty-state">No history found.</div>
                         </div>
                     </div>
                 </div>
@@ -1463,6 +1501,7 @@
         </defs>
     </svg>
     <!-- Main Application Entry Point -->
+    <script src="/src/js/history-sidebar.js?v=3"></script>
     <script type="module" src="/src/js/app.js"></script>
 </body>
 

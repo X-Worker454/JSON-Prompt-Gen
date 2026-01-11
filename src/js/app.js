@@ -1912,6 +1912,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let selectedHistoryItem = null;
 
+    // History Sidebar is now managed by history-sidebar.js
+
     // Trigger Modal Open
     document.getElementById('history-trigger-btn')?.addEventListener('click', () => {
         renderHistoryView('modal');
@@ -2036,6 +2038,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (actionsArea) actionsArea.classList.remove('hidden');
         if (previewArea) previewArea.textContent = JSON.stringify(item.content, null, 2);
+
+        // Close sidebar on select (using global controller from history-sidebar.js)
+        if (view === 'modal' && window.historysSidebarController) {
+            window.historysSidebarController.close();
+        }
     }
 
     // Expose for nav

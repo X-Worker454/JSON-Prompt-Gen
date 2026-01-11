@@ -41,7 +41,7 @@ export default defineConfig({
                 skipWaiting: true
             },
             devOptions: {
-                enabled: true,
+                enabled: false, // Disabled to prevent caching issues in development
                 type: 'module'
             }
         })

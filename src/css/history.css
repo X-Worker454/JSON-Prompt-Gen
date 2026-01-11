@@ -298,6 +298,8 @@
     height: 85vh;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
 }
 
 #history-modal .modal-header {
@@ -309,6 +311,8 @@
     padding: 20px 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     background: transparent;
+    position: relative;
+    z-index: 10;
 }
 
 #history-modal .modal-header h3 {
@@ -321,6 +325,40 @@
     background-clip: text;
 }
 
+/* History Modal Hamburger Button - Explicit visibility */
+#history-hamburger-btn {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+#history-hamburger-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#history-hamburger-btn .hamburger-line {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+#history-hamburger-btn:hover .hamburger-line {
+    background: linear-gradient(335deg, #697fffee, #ff3bf8ec, #ffdd1dee);
+}
+
 .modal-header-actions {
     display: flex;
     gap: 6px;
@@ -329,19 +367,76 @@
 
 #history-modal .modal-body {
     flex: 1;
-    padding: 15px;
+    padding: 0;
     display: flex;
     overflow: hidden;
-    gap: 15px;
 }
 
 #history-modal .history-sidebar {
+    position: absolute;
+    top: 0;
+    left: -320px;
     width: 300px;
+    height: 100%;
+    background: rgba(18, 18, 24, 0.98);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    padding: 0 15px 15px 15px;
+    transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    overflow: hidden;
+    visibility: hidden;
+    pointer-events: none;
+    border-radius: 12px;
+}
+
+#history-modal .history-sidebar.active {
+    left: 0;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#history-sidebar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+#history-sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#history-sidebar-close {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+#history-sidebar-close:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
 }
 
 #history-modal .history-main {
@@ -349,6 +444,7 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+    padding: 15px;
 }
 
 #history-modal .code-wrapper {
@@ -392,4 +488,130 @@
     color: #f87171;
     text-decoration: line-through;
     opacity: 0.8;
+}
+
+/* =============================================
+   HISTORY SECTION (PAGE) - Collapsible Sidebar
+   ============================================= */
+
+.history-main-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.history-section-content {
+    padding: 15px;
+    min-height: 500px;
+}
+
+.history-section-content .code-wrapper {
+    height: 100%;
+}
+
+.history-section-content .code-editor {
+    min-height: 450px;
+}
+
+/* History Section Hamburger Button */
+#history-section-hamburger-btn {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+#history-section-hamburger-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#history-section-hamburger-btn .hamburger-line {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+#history-section-hamburger-btn:hover .hamburger-line {
+    background: linear-gradient(335deg, #697fffee, #ff3bf8ec, #ffdd1dee);
+}
+
+/* History Section Sidebar */
+.history-section-sidebar {
+    position: absolute;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100%;
+    background: rgba(18, 18, 24, 0.98);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    padding: 0 15px 15px 15px;
+    transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    pointer-events: none;
+    border-radius: 12px;
+}
+
+.history-section-sidebar.active {
+    left: 0;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* History Section Sidebar Overlay */
+#history-section-sidebar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+#history-section-sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* History Section Sidebar Close Button */
+#history-section-sidebar-close {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+#history-section-sidebar-close:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
 }
