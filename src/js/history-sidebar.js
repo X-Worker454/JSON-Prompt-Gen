@@ -7,9 +7,14 @@
     'use strict';
 
     // Wait for DOM to be ready
-    document.addEventListener('DOMContentLoaded', initHistorySidebars);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initHistorySidebars);
+    } else {
+        initHistorySidebars();
+    }
 
     function initHistorySidebars() {
+        console.log('Initializing History Sidebars...');
         // ===============================
         // MODAL SIDEBAR
         // ===============================
@@ -20,11 +25,13 @@
         const historyList = document.getElementById('history-list');
 
         function openHistorySidebar() {
+            console.log('Opening History Modal Sidebar');
             if (historySidebar) historySidebar.classList.add('active');
             if (historySidebarOverlay) historySidebarOverlay.classList.add('active');
         }
 
         function closeHistorySidebar() {
+            console.log('Closing History Modal Sidebar');
             if (historySidebar) historySidebar.classList.remove('active');
             if (historySidebarOverlay) historySidebarOverlay.classList.remove('active');
         }
@@ -61,11 +68,13 @@
         const historySectionList = document.getElementById('history-section-list');
 
         function openHistorySectionSidebar() {
+            console.log('Opening History Section Sidebar');
             if (historySectionSidebar) historySectionSidebar.classList.add('active');
             if (historySectionSidebarOverlay) historySectionSidebarOverlay.classList.add('active');
         }
 
         function closeHistorySectionSidebar() {
+            console.log('Closing History Section Sidebar');
             if (historySectionSidebar) historySectionSidebar.classList.remove('active');
             if (historySectionSidebarOverlay) historySectionSidebarOverlay.classList.remove('active');
         }
