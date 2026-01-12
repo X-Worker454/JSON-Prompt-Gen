@@ -517,7 +517,7 @@
 
 .history-section-content .code-editor {
     min-height: 600px;
-    padding: 0;
+    padding: 30px;
 }
 
 /* History Section Hamburger Button */
