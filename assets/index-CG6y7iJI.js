@@ -129,7 +129,7 @@ ${r}`}]}],generationConfig:{temperature:d.temperature||.7,maxOutputTokens:d.maxT
                         </button>
                     </div>
                 </div>
-                <div class="form-group mb-30">
+                <div class="form-group">
                     <label class="section-label">Scene Description</label>
                     <textarea class="scene-description" placeholder="Describe your scene in detail..." style="min-height: 100px;"></textarea>
                 </div>
