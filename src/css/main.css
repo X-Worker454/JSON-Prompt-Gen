@@ -190,6 +190,12 @@ h3 {
     box-shadow: 0 0 15px rgba(234, 2, 225, 0.4);
 }
 
+/* Ensure Generator sits above Global Params for dropdown visibility */
+#generator-section {
+    position: relative;
+    z-index: 20;
+}
+
 .card-header {
     display: flex;
     justify-content: space-between;
