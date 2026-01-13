@@ -431,6 +431,74 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div>
+                <div class="form-group mb-30">
+                    <label class="section-label">Color Palettes</label>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-color-input" placeholder="Select palette or type custom..." aria-label="Color Palette">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger" aria-label="Open color presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="monochromatic">Monochromatic</div>
+                                <div class="dropdown-item" data-value="complementary">Complementary</div>
+                                <div class="dropdown-item" data-value="analogous">Analogous</div>
+                                <div class="dropdown-item" data-value="teal_orange">Cinematic Teal & Orange</div>
+                                <div class="dropdown-item" data-value="cyberpunk">Cyberpunk Glow</div>
+                                <div class="dropdown-item" data-value="sepia">Sepia Tone</div>
+                                <div class="dropdown-item" data-value="vibrant">High Saturation</div>
+                                <div class="dropdown-item" data-value="desaturated">Moody Desaturated</div>
+                                <div class="dropdown-item" data-value="pastel">Pastel Tones</div>
+                                <div class="dropdown-item" data-value="bw">Classic B&W</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-30">
+                    <label class="section-label">Mood Descriptors</label>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-mood-input" placeholder="Select mood or type custom..." aria-label="Mood Descriptors">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger" aria-label="Open mood presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="ethereal">Ethereal/Dreamy</div>
+                                <div class="dropdown-item" data-value="ominous">Dark/Ominous</div>
+                                <div class="dropdown-item" data-value="energetic">High Energy</div>
+                                <div class="dropdown-item" data-value="calm">Calm/Peaceful</div>
+                                <div class="dropdown-item" data-value="nostalgic">Nostalgic</div>
+                                <div class="dropdown-item" data-value="cyberpunk">Cyberpunk/Neon</div>
+                                <div class="dropdown-item" data-value="epic">Epic/Cinematic</div>
+                                <div class="dropdown-item" data-value="suspenseful">Suspenseful</div>
+                                <div class="dropdown-item" data-value="melancholic">Melancholic</div>
+                                <div class="dropdown-item" data-value="whimsical">Whimsical</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-30">
+                    <label class="section-label">Sound Design</label>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-sound-input" placeholder="Describe sound or select presets..." aria-label="Sound Design">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger" aria-label="Open sound presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="ambient_wind">Ambient Wind</div>
+                                <div class="dropdown-item" data-value="orchestral">Cinematic Orchestral</div>
+                                <div class="dropdown-item" data-value="low_hum">Low Hum</div>
+                                <div class="dropdown-item" data-value="nature">Nature Sounds</div>
+                                <div class="dropdown-item" data-value="urban_traffic">Urban Traffic</div>
+                                <div class="dropdown-item" data-value="synthwave">80s Synth</div>
+                                <div class="dropdown-item" data-value="industrial">Heavy Industrial</div>
+                                <div class="dropdown-item" data-value="silence">Deep Silence</div>
+                                <div class="dropdown-item" data-value="asmr">ASMR Rustle</div>
+                                <div class="dropdown-item" data-value="glitch">Glitchy Beats</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="section-label">Negative Prompts</label>
@@ -545,9 +613,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (firstScene) {
                     firstScene.querySelector('.scene-description').value = '';
                     firstScene.querySelector('.scene-negative-prompt').value = '';
-                    firstScene.querySelector('.scene-camera-value').value = '';
-                    firstScene.querySelector('.scene-lighting-value').value = '';
-                    firstScene.querySelectorAll('.pill.active').forEach(p => p.classList.remove('active'));
+                    firstScene.querySelector('.scene-camera-input').value = '';
+                    firstScene.querySelector('.scene-lighting-input').value = '';
+                    firstScene.querySelector('.scene-color-input').value = '';
+                    firstScene.querySelector('.scene-mood-input').value = '';
+                    firstScene.querySelector('.scene-sound-input').value = '';
                     // Hide undo/redo if they were visible
                     firstScene.querySelector('.scene-undo-btn')?.classList.add('hidden');
                     firstScene.querySelector('.scene-redo-btn')?.classList.add('hidden');
@@ -590,6 +660,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Get values from new input fields
                 const camera = sceneEl.querySelector('.scene-camera-input').value.trim();
                 const lighting = sceneEl.querySelector('.scene-lighting-input').value.trim();
+                const color = sceneEl.querySelector('.scene-color-input').value.trim();
+                const mood = sceneEl.querySelector('.scene-mood-input').value.trim();
+                const sound = sceneEl.querySelector('.scene-sound-input').value.trim();
 
                 // Get negative prompt from the input field (which handles both manual and presets)
                 const finalNegative = sceneEl.querySelector('.scene-negative-prompt').value.trim();
@@ -601,7 +674,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         negative_prompt: finalNegative || null,
                         parameters: {
                             camera: camera || null,
-                            lighting: lighting || null
+                            lighting: lighting || null,
+                            color_palette: color || null,
+                            mood: mood || null,
+                            sound_design: sound || null
                         }
                     });
                 }
