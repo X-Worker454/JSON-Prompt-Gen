@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <textarea class="scene-description" placeholder="Describe your scene in detail..." style="min-height: 100px;"></textarea>
                 </div>
                 <div class="scene-params-grid">
-                <div class="form-group mb-30">
+                <div class="form-group">
                     <label class="section-label">Camera Angle</label>
                     <div class="input-with-dropdown">
                         <input type="text" class="scene-camera-input" 
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 </div>
-                <div class="form-group mb-30">
+                <div class="form-group">
                     <label class="section-label">Lighting Style</label>
                     <div class="input-with-dropdown">
                         <input type="text" class="scene-lighting-input" 
@@ -432,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div>
-                <div class="form-group mb-30">
+                <div class="form-group">
                     <label class="section-label">Color Palettes</label>
                     <div class="input-with-dropdown">
                         <input type="text" class="scene-color-input" placeholder="Select palette or type custom..." aria-label="Color Palette">
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 </div>
-                <div class="form-group mb-30">
+                <div class="form-group">
                     <label class="section-label">Mood Descriptors</label>
                     <div class="input-with-dropdown">
                         <input type="text" class="scene-mood-input" placeholder="Select mood or type custom..." aria-label="Mood Descriptors">
@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 </div>
-                <div class="form-group mb-30">
+                <div class="form-group">
                     <label class="section-label">Sound Design</label>
                     <div class="input-with-dropdown">
                         <input type="text" class="scene-sound-input" placeholder="Describe sound or select presets..." aria-label="Sound Design">

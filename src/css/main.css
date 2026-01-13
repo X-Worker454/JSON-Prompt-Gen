@@ -781,6 +781,11 @@ textarea:hover {
     width: 100%;
 }
 
+.scene-params-grid .form-group {
+    margin-bottom: 12px;
+    padding-bottom: 0;
+}
+
 @media (max-width: 768px) {
     .scene-params-grid {
         grid-template-columns: 1fr;
