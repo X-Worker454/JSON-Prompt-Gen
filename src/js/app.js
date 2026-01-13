@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Template System Init Error:', e);
     }
 
+    const gaTracker = new AnalyticsService();
+
     const scenesContainer = document.getElementById('scenes-container');
     const addSceneBtn = document.getElementById('add-scene-btn');
     const generateBtn = document.getElementById('generate-btn');
@@ -101,8 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Initialize Services
-    const analyticsService = new AnalyticsService();
-    const feedbackService = new FeedbackService(analyticsService);
+    const feedbackService = new FeedbackService(gaTracker);
 
     // Initialize History Service early
     const historyService = new HistoryService(); // Ensure HistoryService.js is loaded before app.js in HTML
@@ -121,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openFeedback() {
         if (feedbackModal) {
             feedbackModal.classList.remove('hidden');
-            analyticsService.trackEvent('feedback_open');
+            gaTracker.trackEvent('feedback_open');
             closeSidebar();
         }
     }
@@ -157,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 await feedbackService.submitFeedback(feedbackType, msg);
                 showToast('Feedback Sent', 'Thank you for your feedback!', 'success');
+                gaTracker.trackEvent('submit_feedback', { type: feedbackType });
                 document.getElementById('feedback-message').value = '';
                 closeFeedback();
             } catch (err) {
@@ -229,6 +231,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Update State
                 input.value = val;
                 globalParams.updateParam(conf.key, val);
+                gaTracker.trackEvent('parameter_change', {
+                    param: conf.key,
+                    value: val
+                });
 
                 // Update UI Capabilities
                 updateModelUI();
@@ -326,6 +332,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create a user-friendly message
         const msgList = violations.map(v => `• ${v.message}`).join('<br>');
         showToast('Settings Adjusted', msgList, 'warning', 6000);
+        gaTracker.trackEvent('settings_auto_adjusted', {
+            violation_count: violations.length
+        });
         syncGlobalUI();
         updateModelUI();
     });
@@ -350,6 +359,9 @@ document.addEventListener('DOMContentLoaded', () => {
     addSceneBtn.addEventListener('click', () => {
         sceneCount++;
         const sceneId = sceneCount;
+        gaTracker.trackEvent('add_scene', {
+            scene_id: sceneId
+        });
 
         const sceneHtml = `
             <div class="scene-item" data-scene-id="${sceneId}">
@@ -610,6 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
             if (confirm('Are you sure you want to reset the generator? All current work will be lost.')) {
+                gaTracker.trackEvent('reset_generator');
                 // 1. Clear first scene
                 const firstScene = scenesContainer.querySelector('.scene-item[data-scene-id="1"]');
                 if (firstScene) {
@@ -743,6 +756,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     outputArea.value = JSON.stringify(finalPayload, null, 2);
 
                     if (historyService) historyService.save(finalPayload, 'ai');
+                    gaTracker.trackGeneration(scenes.length, 'ai', currentGlobalParams.platform_preset);
                     showToast('AI Generation Complete', 'Enhanced JSON prompt generated successfully!', 'success');
                     document.getElementById('output-section').classList.remove('hidden');
                     document.getElementById('output-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -764,6 +778,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Save to History
                 if (historyService) historyService.save(finalPayload, 'json');
+                gaTracker.trackGeneration(scenes.length, 'json', currentGlobalParams.platform_preset);
 
                 showToast('Success', 'JSON generated successfully!', 'success');
                 document.getElementById('output-section').classList.remove('hidden');
@@ -786,6 +801,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         navigator.clipboard.writeText(text).then(() => {
             showToast('Copied', 'JSON prompt copied to clipboard!', 'success');
+            gaTracker.trackEvent('copy_json');
         }).catch(err => {
             showToast('Error', 'Failed to copy to clipboard.', 'error');
         });
@@ -808,6 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         showToast('Downloaded', 'JSON file downloaded successfully.', 'success');
+        gaTracker.trackEvent('download_json');
     });
 
     /* ============================
@@ -1123,6 +1140,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Toggle liked state visually
         btnElement.classList.toggle('liked');
         const countSpan = btnElement.querySelector('.like-count');
+        gaTracker.trackEvent('dict_like_term', {
+            term_id: termId,
+            liked: btnElement.classList.contains('liked')
+        });
         let currentLikes = parseInt(countSpan.textContent) || 0;
 
         if (btnElement.classList.contains('liked')) {
@@ -1152,6 +1173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update value
             const currentValue = firstSceneDesc.value;
             firstSceneDesc.value = currentValue ? `${currentValue}, ${termName}` : termName;
+            gaTracker.trackEvent('dict_use_term', { term_name: termName });
 
             // Dispatch input event to ensure auto-generation/preview logic triggers
             firstSceneDesc.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1926,6 +1948,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     textarea.value = history.stack[history.index];
                     updateHistoryButtons(sceneEl);
                     showToast('Undo', 'Reverted to previous version', 'info');
+                    gaTracker.trackEvent('undo_enhance');
                 }
                 return;
             }
@@ -1941,6 +1964,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     textarea.value = history.stack[history.index];
                     updateHistoryButtons(sceneEl);
                     showToast('Redo', 'Restored next version', 'info');
+                    gaTracker.trackEvent('redo_enhance');
                 }
                 return;
             }
@@ -1995,6 +2019,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const enhanced = await llmService.generatePrompt(providerId, sceneData, { modelProfile });
                 textarea.value = enhanced;
+
+                gaTracker.trackEnhance(description.length, enhanced.length);
 
                 // Push enhanced version to history
                 updateSceneHistory(sceneEl, enhanced);
