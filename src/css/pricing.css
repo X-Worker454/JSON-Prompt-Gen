@@ -87,9 +87,7 @@
         text-align: center;
         padding: 30px 20px;
         border-left: 1px solid rgba(36, 251, 36, 0.3);
-        /* Reset to standard border */
         border-top: 5px solid #06af00ab;
-        /* Mobile-first accent border */
     }
 }
 

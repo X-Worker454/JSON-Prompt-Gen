@@ -1970,18 +1970,15 @@ kbd {
         font-size: 0.95rem;
     }
 
-    /* Card Header - Keep in same row */
+    /* Card Header */
     .card-header {
         flex-wrap: wrap;
-        gap: 15px;
-        justify-content: space-between;
+        gap: 10px;
     }
 
     .card-actions {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 10px;
-        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
     }
 
     /* Button Sizing */
@@ -2258,20 +2255,6 @@ kbd {
         font-size: 1rem !important;
     }
 
-    /* Stack card actions vertically if very narrow */
-    .card-header {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 15px !important;
-    }
-
-    .card-actions {
-        width: 100% !important;
-        justify-content: flex-start !important;
-        flex-wrap: wrap !important;
-        gap: 12px !important;
-    }
-
     .btn {
         padding: 7px 10px;
         font-size: 0.75rem;
@@ -2346,8 +2329,10 @@ kbd {
         border-color: rgba(255, 255, 255, 0.1) !important;
     }
 }
+
 /* Additional Mobile Hover Suppression */
 @media (hover: none) {
+
     .pill:hover,
     .sidebar-link:hover,
     .dropdown-item:hover,
@@ -2358,13 +2343,13 @@ kbd {
         transform: none !important;
         box-shadow: none !important;
     }
-    
+
     /* Keep active states visible */
     .pill.active:hover {
         background: var(--accent-gradient) !important;
         color: white !important;
     }
-    
+
     .sidebar-link.active:hover {
         background: rgba(255, 255, 255, 0.08) !important;
     }
