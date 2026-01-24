@@ -18,6 +18,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="src/css/theme.css">
     <link rel="stylesheet" href="src/css/landing.css">
+    <link rel="stylesheet" href="src/css/visual-proof-premium.css">
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.webmanifest">
@@ -136,46 +137,188 @@
     </section>
 
     <!-- Visual Proof Section -->
-    <section class="proof-section mt-120">
+    <section class="proof-section">
         <div class="container">
             <h2 class="section-title text-center">Prompting is Engineering</h2>
             <p class="section-subtitle text-center">Natural language is ambiguous. JSON is absolute. See the difference.
             </p>
 
-            <div class="visual-proof-grid">
-                <!-- Bad Prompt -->
-                <div class="proof-card failure glass-panel">
+            <!-- Example 1: Beginner -->
+            <div class="proof-example-block">
+                <div class="level-badge">
+                    <span class="level-number">Level 1</span>
+                    <span class="level-title">The Beginner</span>
+                </div>
+
+                <div class="proof-card failure">
                     <div class="card-header-sm">
-                        <span class="status-dot red"></span> Vague Input
+                        <span class="status-dot red"></span>
+                        <span class="card-type-label">Vague Natural Language</span>
                     </div>
                     <div class="code-block-sm">
-                        "Cinematic shot of a robot in the rain, cool lighting."
+                        "Cool slow motion video of a racing car drifting on a track at night with smoke."
                     </div>
                     <div class="result-feedback failure">
-                        Result: ⚠️ Hallucinated camera movement.
-                        <div class="cost-pill failure">Cost: $2.47 per usable shot</div>
+                        Result: ⚠️ Hallucinated camera speed.
+                        <div class="cost-pill failure">Cost: $2.47 / shot</div>
                     </div>
                 </div>
 
-                <!-- Arrow -->
-                <div class="proof-arrow">➔</div>
+                <div class="proof-arrow"></div>
 
-                <!-- Good Prompt -->
-                <div class="proof-card success glass-panel">
+                <div class="proof-card success">
                     <div class="card-header-sm">
-                        <span class="status-dot green"></span> JSON Structure
+                        <span class="status-dot green"></span>
+                        <span class="card-type-label">Structured JSON</span>
                     </div>
                     <pre><code class="language-json">{
-  <span class="key">"subject"</span>: <span class="string">"robot_model_x"</span>,
-  <span class="key">"environment"</span>: <span class="string">"neon_rainy_city"</span>,
+  <span class="key">"subject"</span>: <span class="string">"racing_car"</span>,
+  <span class="key">"action"</span>: <span class="string">"drifting"</span>,
+  <span class="key">"environment"</span>: <span class="string">"night_track"</span>,
   <span class="key">"camera"</span>: {
-    <span class="key">"type"</span>: <span class="string">"dolly_zoom"</span>,
-    <span class="key">"lens"</span>: <span class="string">"35mm_anamorphic"</span>
+    <span class="key">"type"</span>: <span class="string">"slow_motion"</span>,
+    <span class="key">"fps"</span>: 60
   }
 }</code></pre>
                     <div class="result-feedback success">
-                        Result: ✅ Consistent verified output.
-                        <div class="cost-pill success">Cost: $0.63 per usable shot</div>
+                        Result: ✅ Physics-accurate motion.
+                        <div class="cost-pill success">Cost: $0.63 / shot</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2: Intermediate -->
+            <div class="proof-example-block">
+                <div class="level-badge">
+                    <span class="level-number">Level 2</span>
+                    <span class="level-title">The Content Creator</span>
+                </div>
+
+                <div class="proof-card failure">
+                    <div class="card-header-sm">
+                        <span class="status-dot red"></span>
+                        <span class="card-type-label">Unstructured Detail</span>
+                    </div>
+                    <div class="code-block-sm">
+                        "Cyberpunk street samurai walking in rain, neon lights, 35mm lens, shallow depth of field, moody
+                        atmosphere."
+                    </div>
+                    <div class="result-feedback failure">
+                        Result: ⚠️ Parameters ignored by model.
+                        <div class="cost-pill failure">Cost: $1.85 / shot</div>
+                    </div>
+                </div>
+
+                <div class="proof-arrow"></div>
+
+                <div class="proof-card success">
+                    <div class="card-header-sm">
+                        <span class="status-dot green"></span>
+                        <span class="card-type-label">Validated Parameters</span>
+                    </div>
+                    <pre><code class="language-json">{
+  <span class="key">"subject"</span>: <span class="string">"cyberpunk_samurai"</span>,
+  <span class="key">"camera"</span>: {
+    <span class="key">"lens"</span>: <span class="string">"35mm"</span>,
+    <span class="key">"focus"</span>: <span class="string">"shallow_dof"</span>
+  },
+  <span class="key">"lighting"</span>: <span class="string">"neon_moody"</span>
+}</code></pre>
+                    <div class="result-feedback success">
+                        Result: ✅ Exact lens replication.
+                        <div class="cost-pill success">Cost: $0.63 / shot</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 3: Professional -->
+            <div class="proof-example-block">
+                <div class="level-badge">
+                    <span class="level-number">Level 3</span>
+                    <span class="level-title">The Director</span>
+                </div>
+
+                <div class="proof-card failure">
+                    <div class="card-header-sm">
+                        <span class="status-dot red"></span>
+                        <span class="card-type-label">Screenplay Format</span>
+                    </div>
+                    <div class="code-block-sm">
+                        "EXT. DESERT - DAY. Wide Shot. A lone wanderer traverses the dunes. Sun flare. High contrast.
+                        70mm IMAX. Tracking shot."
+                    </div>
+                    <div class="result-feedback failure">
+                        Result: ⚠️ Inconsistent framing.
+                        <div class="cost-pill failure">Cost: $2.10 / shot</div>
+                    </div>
+                </div>
+
+                <div class="proof-arrow"></div>
+
+                <div class="proof-card success">
+                    <div class="card-header-sm">
+                        <span class="status-dot green"></span>
+                        <span class="card-type-label">Production Schema</span>
+                    </div>
+                    <pre><code class="language-json">{
+  <span class="key">"shot_type"</span>: <span class="string">"wide_shot"</span>,
+  <span class="key">"camera"</span>: {
+    <span class="key">"format"</span>: <span class="string">"70mm_imax"</span>,
+    <span class="key">"movement"</span>: <span class="string">"tracking"</span>
+  },
+  <span class="key">"lighting"</span>: <span class="string">"high_contrast_sun"</span>
+}</code></pre>
+                    <div class="result-feedback success">
+                        Result: ✅ Production-ready footage.
+                        <div class="cost-pill success">Cost: $0.63 / shot</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 4: Developer -->
+            <div class="proof-example-block">
+                <div class="level-badge">
+                    <span class="level-number">Level 4</span>
+                    <span class="level-title">The Developer</span>
+                </div>
+
+                <div class="proof-card failure">
+                    <div class="card-header-sm">
+                        <span class="status-dot red"></span>
+                        <span class="card-type-label">Broken Syntax</span>
+                    </div>
+                    <div class="code-block-sm">
+                        {
+                        "subject": "spaceman"
+                        "action": "floating",
+                        "camera": [
+                        "type": "dolly"
+                        ]
+                        }
+                    </div>
+                    <div class="result-feedback failure">
+                        Result: ❌ Fatal Parse Error (0s generated).
+                        <div class="cost-pill failure">Status: Failed</div>
+                    </div>
+                </div>
+
+                <div class="proof-arrow"></div>
+
+                <div class="proof-card success">
+                    <div class="card-header-sm">
+                        <span class="status-dot green"></span>
+                        <span class="card-type-label">Auto-Corrected</span>
+                    </div>
+                    <pre><code class="language-json">{
+  <span class="key">"subject"</span>: <span class="string">"spaceman"</span>,
+  <span class="key">"action"</span>: <span class="string">"floating"</span>,
+  <span class="key">"camera"</span>: {
+    <span class="key">"type"</span>: <span class="string">"dolly"</span>
+  }
+}</code></pre>
+                    <div class="result-feedback success">
+                        Result: ✅ Validated & Executed.
+                        <div class="cost-pill success">Cost: $0.63 / shot</div>
                     </div>
                 </div>
             </div>
