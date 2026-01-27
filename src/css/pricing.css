@@ -3,6 +3,18 @@
    ========================================= */
 
 /* Section Layout */
+.pricing-main-container {
+    margin-top: 150px;
+    min-height: 80vh;
+}
+
+.logo-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .pricing-page {
     width: 100%;
     margin-bottom: 60px;
@@ -31,8 +43,8 @@
 
 /* Beta Notice */
 .beta-notice {
-    max-width: 800px;
-    margin: -40px auto 40px;
+    max-width: 900px;
+    margin: -40px auto 100px;
     background: rgba(36, 251, 47, 0.08);
     border: 1px solid rgba(36, 251, 36, 0.3);
     border-left: 5px solid #06af00ab;
@@ -91,32 +103,125 @@
     }
 }
 
-/* Tier Grid */
+/* Tier Grid - 2x2 Layout */
 .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 34px;
+    row-gap: 110px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 24px;
+    align-items: stretch;
+}
+
+@media (max-width: 1400px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+        column-gap: 32px;
+        row-gap: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        gap: 32px;
+        padding: 0 20px;
+    }
+}
+
+/* Annual Toggle */
+.pricing-toggle-wrapper {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
+    align-items: center;
+    gap: 15px;
+    margin: 40px 0 10px;
+}
+
+.toggle-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.836);
+    transition: color 0.3s ease;
+}
+
+.toggle-label.active {
+    color: rgba(0, 255, 242, 0.932);
+}
+
+.pricing-switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 26px;
+}
+
+.pricing-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: rgba(255, 255, 255, 0.644);
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+input:checked+.slider:before {
+    transform: translateX(28px);
+}
+
+.save-badge {
+    background: rgba(36, 251, 240, 0.1);
+    color: rgba(0, 255, 255, 0.932);
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-left: 10px;
+    border: 1px solid rgba(36, 244, 251, 0.493);
 }
 
 /* Card Architecture */
 .pricing-card {
-    flex: 1 1 350px;
-    max-width: 380px;
     background: rgba(20, 20, 30, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 26px;
-    padding: 32px;
+    border-radius: 24px;
+    padding: 34px 24px;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     transition: all 0.3s ease;
+    min-height: 100%;
+    height: auto;
 }
 
 .pricing-card:hover {
@@ -126,66 +231,132 @@
 }
 
 
+/* Popular Badge */
+.popular-badge {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    background: rgba(255, 230, 0, 0.1);
+    border: 1px solid #ffd900be;
+    color: #ffd900c0;
+    padding: 6px 10px;
+    border-radius: 16px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 20px rgba(255, 217, 0, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 30px rgba(255, 217, 0, 0.6), 0 0 40px rgba(255, 217, 0, 0.3);
+    }
+}
+
 /* Tier Specifics */
-/* Tier 1: Free (Blue from User Request) */
-.tier-free {
-    border-top: 5px solid #0073ffd5;
-    transform: translateY(-5px);
-    border-color: #0073ffd7;
+/* Tier 1: Creator (Cyan) */
+.tier-creator {
+    border: 1px solid rgb(0, 255, 242);
+    border-top: 4px solid #00fff2;
 }
 
-.tier-free:hover {
-    transform: translateY(-5px);
-    border-top: 5px solid #2788ff;
-    border-color: #2788ff;
+.tier-creator:hover {
+    border-top-color: #00fff2;
+    box-shadow: 0 15px 40px rgba(0, 255, 242, 0.2);
 }
 
-.tier-free .pricing-badge {
-    background: rgba(0, 115, 255, 0.1);
+.tier-creator .pricing-badge {
+    background: rgba(0, 255, 242, 0.1);
+    color: #00fff2;
+    border: 1px solid rgba(0, 255, 242, 0.3);
+}
+
+.tier-creator .price-amount {
+    color: #00fff2;
+}
+
+.tier-creator li svg {
+    color: #00fff2;
+}
+
+/* Tier 2: Professional (Blue) - MOST POPULAR */
+.tier-professional {
+    border: 1px solid rgb(0, 115, 255);
+    border-top: 4px solid #0073ffee;
+}
+
+.tier-professional:hover {
+    border-top-color: #2788ff;
+    box-shadow: 0 20px 50px rgba(0, 115, 255, 0.3);
+}
+
+.tier-professional .pricing-badge {
+    background: rgba(0, 115, 255, 0.15);
     color: #0073ffee;
-    border: 1px solid rgba(0, 115, 255, 0.3);
+    border: 1px solid rgba(0, 115, 255, 0.4);
 }
 
-.tier-free .price-amount {
+.tier-professional .price-amount {
     color: #0073ffee;
 }
 
-/* Tier 2: Pro (Amber) */
-.tier-pro {
-    border-top: 5px solid #c48c00;
-    transform: translateY(-5px);
-    border-color: #c48c00;
+.tier-professional li svg {
+    color: #0073ffee;
 }
 
-.tier-pro:hover {
-    transform: translateY(-5px);
-    border-top: 5px solid #ffbb0d;
-    border-color: #ffbb0d;
+/* Tier 3: Studio (Gold) */
+.tier-studio {
+    border: 1px solid rgba(255, 217, 0, 0.856);
+    border-top: 4px solid #ffd900ee;
 }
 
-.tier-pro .pricing-badge {
-    background: rgba(245, 158, 11, 0.15);
-    color: #fbbf24;
-    border: 1px solid rgba(245, 158, 11, 0.3);
+.tier-studio:hover {
+    border-top-color: #ffed4e;
+    box-shadow: 0 15px 40px rgba(255, 217, 0, 0.2);
 }
 
-.tier-pro .price-amount {
-    color: #fbbf24;
+.tier-studio .pricing-badge {
+    background: rgba(255, 217, 0, 0.15);
+    color: #ffd900ee;
+    border: 1px solid rgba(255, 217, 0, 0.4);
 }
 
-/* Tier 3: Enterprise (Purple) */
-.tier-enterprise {
-    border-top: 5px solid #c50fbfec;
+.tier-studio .price-amount {
+    color: #ffd900ee;
 }
 
-.tier-enterprise .pricing-badge {
-    background: rgba(234, 2, 226, 0.1);
-    color: #ea02e2ec;
-    border: 1px solid rgba(234, 2, 226, 0.3);
+.tier-studio li svg {
+    color: #ffd900ee;
 }
 
-.tier-enterprise .price-amount {
-    color: #ff2af8ec;
+/* Tier 4: Agency (Purple) */
+.tier-agency {
+    border: 1px solid rgb(146, 51, 234);
+    border-top: 4px solid #9333ea;
+}
+
+.tier-agency:hover {
+    border-top-color: #a855f7;
+    box-shadow: 0 15px 40px rgba(147, 51, 234, 0.2);
+}
+
+.tier-agency .pricing-badge {
+    background: rgba(147, 51, 234, 0.15);
+    color: #a855f7;
+    border: 1px solid rgba(147, 51, 234, 0.4);
+}
+
+.tier-agency .price-amount {
+    color: #a855f7;
+}
+
+.tier-agency li svg {
+    color: #9333ea;
 }
 
 /* Card Content */
@@ -221,6 +392,7 @@
     font-size: 2.5rem;
     font-weight: 800;
     letter-spacing: -1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .price-period {
@@ -237,8 +409,8 @@
 
 /* Features List */
 .pricing-features {
-    flex: 1;
-    margin: 0 0 32px;
+    flex: 1 1 auto;
+    margin: 0 0 24px;
     list-style: none;
     padding: 0;
 }
@@ -256,8 +428,6 @@
 .pricing-features li svg {
     flex-shrink: 0;
     margin-top: 3px;
-    color: var(--accent-primary);
-    /* Default check color */
 }
 
 .tier-free li svg {
@@ -272,17 +442,19 @@
     color: #ea02e2ec;
 }
 
-/* Pricing Actions - Coming Soon Style */
+/* Pricing Actions */
 .pricing-action {
     margin-top: auto;
+    flex-shrink: 0;
+    padding-top: 8px;
 }
 
 .btn-pricing {
     width: 100%;
-    padding: 14px;
-    font-size: 1rem;
+    padding: 15px 0;
+    font-size: 0.95rem;
     font-weight: 600;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: center;
@@ -295,12 +467,25 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-secondary);
+    text-decoration: none;
 }
 
 .btn-pricing:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
     color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.btn-pricing.btn-primary {
+    background: linear-gradient(135deg, #00d3c8d5 0%, #2286ffd7 100%);
+    border: none;
+    color: #000000;
+    font-weight: 700;
+}
+
+.btn-pricing.btn-primary:hover {
+    background: linear-gradient(135deg, #00d3c8d5 0%, #2286ffd7 100%);
 }
 
 .btn-pricing.coming-soon {
@@ -313,6 +498,7 @@
 .btn-pricing.coming-soon:hover {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.15);
+    transform: none;
 }
 
 /* Animations */
@@ -363,5 +549,95 @@
 
     .pricing-card {
         padding: 24px;
+    }
+}
+
+/* ROI Section */
+.pricing-roi-section {
+    margin-top: 80px;
+    padding: 60px 0;
+    position: relative;
+}
+
+.roi-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.roi-title {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.roi-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 50px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.roi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.roi-card {
+    background: rgba(20, 20, 30, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.roi-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(30, 30, 45, 0.5);
+}
+
+.roi-stat {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 0 12px;
+    display: block;
+}
+
+.roi-label {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .roi-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .roi-stat {
+        font-size: 2rem;
     }
 }

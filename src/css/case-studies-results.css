@@ -29,111 +29,26 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
+.user-role-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(231, 216, 0, 0.774);
+    background: rgba(255, 230, 0, 0.05);
+    border: 1px solid rgba(255, 238, 0, 0.507);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    box-shadow: 0 0 10px rgba(255, 238, 0, 0.05);
+}
+
 .case-card:hover {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-}
-
-.case-header {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.user-meta {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 8px;
-}
-
-.user-avatar {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--accent-gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: #fff;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.user-details {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.user-details h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #fff;
-}
-
-.user-role {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
-
-.case-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    width: fit-content;
-}
-
-.case-tag.indie {
-    background: rgba(0, 255, 242, 0.1);
-    color: #00fff2;
-    border: 1px solid rgba(0, 255, 242, 0.3);
-}
-
-.case-tag.agency {
-    background: rgba(144, 26, 255, 0.1);
-    color: #901aff;
-    border: 1px solid rgba(144, 26, 255, 0.3);
-}
-
-.case-tag.creator {
-    background: rgba(255, 217, 0, 0.1);
-    color: #ffd900;
-    border: 1px solid rgba(255, 217, 0, 0.3);
-}
-
-.case-tag.studio {
-    background: rgba(255, 153, 0, 0.1);
-    color: #ff9900;
-    border: 1px solid rgba(255, 153, 0, 0.3);
-}
-
-.case-tag.gamedev {
-    background: rgba(255, 0, 247, 0.1);
-    color: #ff00f7;
-    border: 1px solid rgba(255, 0, 247, 0.3);
-}
-
-.case-tag.education {
-    background: rgba(0, 115, 255, 0.1);
-    color: #0073ff;
-    border: 1px solid rgba(0, 115, 255, 0.3);
-}
-
-.case-header h3 {
-    margin: 0;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff;
 }
 
 .case-stat {
@@ -148,7 +63,7 @@
 }
 
 .stat-big {
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-weight: 800;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
@@ -158,19 +73,19 @@
 }
 
 .stat-desc {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .testimonial-text {
-    margin: 20px 0;
+    margin: 0 0 24px 0;
     color: #e2e8f0;
     line-height: 1.7;
     font-size: 0.95rem;
     font-style: italic;
-    border-left: 3px solid rgba(0, 255, 242, 0.3);
+    border-left: 3px solid rgba(0, 228, 209, 0.514);
     padding-left: 16px;
     background: rgba(0, 0, 0, 0.2);
     padding: 16px;

@@ -7,7 +7,7 @@ import { AnalyticsService } from './analyticsService.js';
 import { FeedbackService } from './feedbackService.js';
 import { GettingStarted } from './gettingStarted.js';
 import { GlobalParamsService } from './globalParamsService.js';
-import { PricingManager } from './pricing.js';
+
 import { TemplateService } from './services/templateService.js';
 import { TemplateUI } from './templateUI.js';
 
@@ -25,11 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('GettingStarted Init Error:', e);
     }
 
-    try {
-        new PricingManager();
-    } catch (e) {
-        console.error('PricingManager Init Error:', e);
-    }
+
 
     // Initialize Template System
     try {
@@ -41,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const gaTracker = new AnalyticsService();
-    window.gaTracker = gaTracker; // Expose for other modules like Pricing and History
+    window.gaTracker = gaTracker; // Expose for other modules like History
 
     const scenesContainer = document.getElementById('scenes-container');
     const addSceneBtn = document.getElementById('add-scene-btn');
@@ -953,11 +949,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('section').forEach(sect => sect.classList.add('hidden'));
         const mainHero = document.querySelector('.hero-section');
         const dictHero = document.querySelector('.dict-hero');
-        const pricingHero = document.querySelector('.pricing-hero');
 
         mainHero?.classList.add('hidden');
         dictHero?.classList.add('hidden');
-        pricingHero?.classList.add('hidden');
 
         // Show target section and related components
         const targetSection = document.getElementById(sectionId);
@@ -991,12 +985,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typeof renderHistoryView === 'function') {
                 renderHistoryView('section');
             }
-        } else if (sectionId === 'pricing-section') {
-            pricingHero?.classList.remove('hidden');
+
         }
     }
 
-    // Expose for external access (e.g., from pricing.js)
+    // Expose for external access
     window.switchSection = switchSection;
 
     // Bind Navigation Links

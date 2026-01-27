@@ -627,7 +627,7 @@ textarea:hover {
     }
 }
 
-/* Footer Styles */
+/* Footer Styles 
 .site-footer {
     background: var(--bg-elevated);
     -webkit-backdrop-filter: var(--glass-blur);
@@ -723,19 +723,19 @@ textarea:hover {
 
 .footer-col button:hover {
     color: var(--accent-primary);
-}
+}*/
 
 .footer-bottom {
     max-width: 1800px;
     margin: 60px auto 0px;
-    padding: 15px 5px 0;
+    padding: 15px 5px 15px;
     border-top: 2px solid rgba(255, 255, 255, 0.05);
     text-align: center;
     color: var(--text-secondary);
     font-size: 1rem;
 }
 
-/* Footer Responsive */
+/* Footer Responsive 
 @media (max-width: 768px) {
     .footer-inner {
         grid-template-columns: 1fr 1fr;
@@ -751,7 +751,7 @@ textarea:hover {
     .footer-inner {
         grid-template-columns: 1fr;
     }
-}
+}*/
 
 /* Multi-Scene Styles */
 .scene-item {
